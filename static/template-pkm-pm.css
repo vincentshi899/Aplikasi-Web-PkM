@@ -1,0 +1,820 @@
+/* ================= GLOBAL RESET & UI FONT ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* Font default untuk UI (bukan dokumen) */
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top right, #2d3e5b, #1a253a);
+  color: #ffffff;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  background: #1e293b;
+  height: 70px;
+  border-bottom: 2px solid #e57632;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo {
+  height: 100px;
+}
+.brand-title {
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-link {
+  text-decoration: none;
+  color: #cbd5e1;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s ease;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: #e57632;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.user-info {
+  text-align: right;
+  line-height: 1.2;
+}
+#userFullname {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+}
+.role-badge {
+  background: #e57632;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  display: inline-block;
+}
+.logout-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.logout-btn:hover {
+  background: #ff4757;
+}
+/* =========================================
+   9. TOMBOL TEMA (DARK/LIGHT MODE)
+   ========================================= */
+.theme-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.theme-btn:hover {
+  background: #e57632;
+}
+
+/* ================= LAYOUT UTAMA ================= */
+.split-container {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  height: calc(100vh - 80px);
+}
+
+/* ================= LEFT PANEL (EDITOR FORM) ================= */
+.left-panel {
+  background: rgba(30, 41, 59, 0.5);
+  padding: 25px;
+  overflow-y: auto;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.panel-header h3 {
+  color: #e57632;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+.panel-header p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  margin-bottom: 25px;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  margin: 25px 0 10px;
+  text-transform: uppercase;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  color: #cbd5e1;
+  font-size: 13px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+/* Input Styles */
+input,
+textarea,
+select {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 12px 15px;
+  color: white;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #e57632;
+  outline: none;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.input-readonly {
+  color: #64748b;
+  cursor: not-allowed;
+}
+
+.btn-download {
+  background: #475569;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+/* ================= RIGHT PANEL (PREVIEW DOKUMEN) ================= */
+/* Ini adalah bagian yang diperbaiki untuk standar PKM */
+
+.right-panel {
+  background: #334155;
+  padding: 40px;
+  overflow-y: auto;
+  display: block;
+  text-align: center;
+}
+
+.paper-preview {
+  background: white;
+  width: 210mm; /* A4 Width */
+  min-height: 297mm; /* A4 Height */
+  padding: 25mm 25mm 25mm 30mm; /* Margin standar 4-3-3-3 biasanya, disesuaikan */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  color: black;
+  display: inline-block;
+  text-align: left;
+  margin: 0 auto;
+
+  /* SETTING FONT STANDAR KARYA ILMIAH */
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 12pt;
+  line-height: 1.15;
+}
+
+/* Override font Poppins untuk semua elemen di dalam preview */
+.paper-preview * {
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+/* Judul Utama Artikel */
+#out-judul-artikel {
+  font-size: 14pt;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+/* Identitas Penulis di bawah Judul */
+.paper-preview p {
+  font-size: 12pt;
+  margin-bottom: 6pt;
+  text-align: justify; /* Rata kanan kiri */
+  white-space: pre-wrap;
+}
+
+#out-penulis1,
+#out-penulis2 {
+  font-size: 11pt;
+  font-weight: bold;
+}
+
+#out-inst1,
+#out-email {
+  font-size: 11pt;
+}
+
+/* Sub-Judul (ABSTRAK, PENDAHULUAN, dll) */
+.paper-preview h3 {
+  font-size: 12pt;
+  font-weight: bold;
+  margin-top: 18pt;
+  margin-bottom: 6pt;
+  text-transform: uppercase;
+  text-align: center; /* Default center untuk Abstrak, nanti di-override jika perlu */
+}
+
+/* Heading bagian isi (Pendahuluan dst) biasanya rata kiri */
+#out-pendahuluan,
+#out-metode,
+#out-hasil,
+#out-kesimpulan,
+#out-terimakasih,
+#out-pustaka,
+#out-kontribusi {
+  text-align: justify;
+}
+
+/* Khusus judul Bab agar rata kiri kecuali Abstrak */
+h3:not(:first-of-type) {
+  text-align: left;
+}
+
+/* Abstrak Content */
+#out-abstrak,
+#out-abstract-en {
+  font-size: 11pt;
+  text-align: justify;
+}
+
+/* Garis Horizontal */
+.paper-preview hr {
+  margin: 12px 0;
+  border: 0;
+  border-top: 1px solid black;
+}
+
+/* Daftar Pustaka (Hanging Indent) */
+.pustaka-item {
+  text-align: justify;
+  text-indent: -1cm;
+  margin-left: 1cm;
+  margin-bottom: 6pt;
+  font-size: 12pt;
+}
+
+/* ================= LAMPIRAN & SURAT ================= */
+.doc-page {
+  page-break-before: always;
+  margin-top: 30px;
+  border-top: 1px dashed #ccc; /* Visual helper di layar */
+  padding-top: 30px;
+}
+
+.doc-section-title {
+  text-align: center !important;
+  font-size: 12pt;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.doc-subsection-title {
+  font-size: 12pt;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+/* Tabel Biodata */
+.biodata-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+  font-size: 12pt;
+}
+
+.biodata-table td {
+  border: 1px solid black;
+  padding: 4px 8px;
+  vertical-align: top;
+  text-align: left;
+  color: black;
+}
+
+.biodata-table .no-col {
+  width: 30px;
+  text-align: center;
+}
+
+.table-header td {
+  font-weight: bold;
+  text-align: center;
+  background-color: #f0f0f0; /* Abu tipis saat print biasanya hilang, aman */
+}
+
+/* Bagian Tanda Tangan */
+.ttd-section {
+  margin-top: 40px;
+}
+
+.ttd-box {
+  width: 250px;
+  margin-left: auto; /* dorong ke kanan */
+  text-align: left; /* isi tetap rata kiri */
+}
+
+.ttd-nama {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Surat Pernyataan Styling */
+.surat-title {
+  font-size: 14pt;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.title-line {
+  border-bottom: 3px solid black;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.surat-meta {
+  margin: 15px 0;
+}
+
+.surat-row {
+  display: flex;
+  margin-bottom: 4px;
+}
+
+.surat-col1 {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.poin-list {
+  margin-left: 20px;
+  padding-left: 15px;
+}
+
+.poin-list li {
+  margin-bottom: 8px;
+  text-align: justify;
+}
+
+/* Sub Point (a, b, c di dalam surat) */
+.sub-point-container {
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.sub-point {
+  display: flex;
+  margin-bottom: 4px;
+}
+.sub-label {
+  width: 230px;
+  flex-shrink: 0;
+}
+.sub-colon {
+  width: 15px;
+  text-align: center;
+  flex-shrink: 0;
+}
+.sub-value {
+  font-weight: bold;
+}
+
+.rab-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Times New Roman", serif;
+  font-size: 12pt;
+}
+
+.rab-table th,
+.rab-table td {
+  border: 1px solid black;
+  padding: 6px;
+  vertical-align: top;
+  color: black;
+}
+
+.rab-table th {
+  text-align: center;
+}
+
+.rab-center {
+  text-align: center;
+}
+
+/* ================= PRINT MEDIA QUERY ================= */
+@media print {
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+
+  /* Sembunyikan UI */
+  .navbar,
+  .left-panel,
+  .btn-download {
+    display: none !important;
+  }
+
+  /* Reset Layout */
+  html,
+  body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .split-container,
+  .right-panel {
+    display: block !important;
+    width: 100% !important;
+    background: white !important;
+  }
+
+  /* Jangan ubah width jadi 100% */
+  .paper-preview {
+    box-shadow: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: auto !important;
+  }
+
+  /* Paksa halaman baru hanya di class ini */
+  .doc-page {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+
+  /* 🔥 Ini yang penting */
+  .biodata-table,
+  .ttd-section,
+  .doc-section-title,
+  .doc-subsection-title,
+  p {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+}
+
+/* =========================================
+   LIGHT MODE STYLES (OVERRIDE TEMA BAWAAN)
+========================================= */
+/* Navbar Terang */
+body.light-mode .navbar {
+  background: #ffffff;
+  border-bottom: 2px solid #2563eb;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+body.light-mode .brand-title,
+body.light-mode .nav-link,
+body.light-mode #userFullname {
+  color: #1e293b !important;
+}
+body.light-mode .nav-link:hover {
+  color: #2563eb !important;
+}
+body.light-mode .theme-btn,
+body.light-mode .logout-btn {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+body.light-mode .theme-btn:hover {
+  background: #e2e8f0;
+}
+body.light-mode .logout-btn:hover {
+  background: #ff4757;
+  color: white;
+}
+
+/* Panel Kiri (Editor) Terang */
+body.light-mode .left-panel {
+  background: #ffffff;
+  border-right: 1px solid #cbd5e1;
+}
+body.light-mode .left-panel::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+body.light-mode .left-panel::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+/* Panel Kanan (Latar Belakang Kertas) */
+body.light-mode .right-panel {
+  background: #e2e8f0;
+}
+
+/* Form Card Terang */
+body.light-mode .form-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+body.light-mode .panel-header h3 {
+  color: #e57632;
+}
+body.light-mode .panel-header p {
+  color: #64748b;
+}
+body.light-mode .section-title {
+  color: #475569;
+  border-bottom: 1px solid #cbd5e1;
+}
+body.light-mode .form-group label {
+  color: #334155;
+}
+
+/* Input, Textarea, Select Terang */
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+}
+body.light-mode input:focus,
+body.light-mode textarea:focus,
+body.light-mode select:focus {
+  border-color: #e57632;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(229, 118, 50, 0.2);
+}
+body.light-mode fieldset {
+  border-color: #cbd5e1;
+}
+body.light-mode legend {
+  background: transparent;
+}
+body.light-mode .input-readonly {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+/* Fitur Daftar Pustaka Terang */
+body.light-mode .citation-wrapper {
+  background: #f1f5f9;
+  border: 1px dashed #cbd5e1;
+}
+body.light-mode .cite-select,
+body.light-mode .cite-inputs input {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+body.light-mode .citation-list-editor li {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #e57632;
+  color: #334155;
+}
+/* Memaksa semua teks heading dan paragraf jadi warna gelap saat Light Mode */
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode p,
+body.light-mode span,
+body.light-mode .brand-title,
+body.light-mode .nav-link {
+  color: #1e293b !important;
+}
+
+/* Memperbaiki nama user yang memakai inline style "color: white" di HTML */
+body.light-mode #userFullname {
+  color: #1e293b !important;
+}
+
+/* Memperbaiki tulisan di dalam kotak (Card) Dashboard agar tidak hilang */
+body.light-mode .pkm-card h3,
+body.light-mode .pkm-card p,
+body.light-mode .pkm-icon {
+  color: #1e293b !important;
+}
+
+/* Memperbaiki tombol di mode terang agar kontrasnya pas */
+body.light-mode .pkm-btn {
+  background-color: #e57632;
+  color: white !important; /* Tulisan tombol tetap putih karena backgroundnya oren */
+}
+body.light-mode .pkm-card:hover {
+  border-color: #2563eb;
+}
+body.light-mode .pkm-btn {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+body.light-mode .role-badge {
+  background: #85a5e9;
+  color: white;
+}
+/* Light mode - judul panel kiri jadi biru */
+body.light-mode .left-panel .panel-header h3 {
+  color: #2563eb !important;
+}
+
+/* Light mode - judul section seperti Lampiran jadi biru */
+body.light-mode .left-panel .section-title {
+  color: #2563eb !important;
+}
+
+/* Light mode - legend (judul fieldset) jadi biru */
+body.light-mode .left-panel legend {
+  color: #2563eb !important;
+}
+
+body.light-mode .citation-wrapper label {
+  color: #2563eb !important;
+}
+
+body.light-mode .citation-wrapper label {
+  color: #2563eb !important;
+}
+
+.logo {
+  height: 100px;
+}
+
+.theme-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.theme-btn:hover {
+  background: #e57632;
+}
+/* PENGAJARAN */
+/* Ubah ukuran teks header */
+#pengajaran-table th {
+  font-size: 12px;
+}
+
+/* Ubah ukuran teks isi tabel */
+#pengajaran-table td {
+  font-size: 12px;
+}
+
+/* Ubah ukuran teks dalam input */
+#pengajaran-table input {
+  font-size: 12px;
+}
+
+/* PENELITIAN */
+/* Ubah ukuran teks header */
+#penelitian-table th {
+  font-size: 12px;
+}
+
+/* Ubah ukuran teks isi tabel */
+#penelitian-table td {
+  font-size: 12px;
+}
+
+/* Ubah ukuran teks dalam input */
+#penelitian-table input {
+  font-size: 12px;
+}
+
+/* RIWAYAT PENDIDIKAN */
+/* Ubah ukuran teks header */
+#pendidikan-table th {
+  font-size: 12px;
+}
+
+/* Ubah ukuran teks isi tabel */
+#pendidikan-table td {
+  font-size: 12px;
+}
+
+/* Ubah ukuran teks dalam input */
+#pendidikan-table input {
+  font-size: 12px;
+}
+
+/* PENGABDIAN */
+/* Ubah ukuran teks header */
+#pengabdian-table th {
+  font-size: 12px;
+}
+
+/* Ubah ukuran teks isi tabel */
+#pengabdian-table td {
+  font-size: 12px;
+}
+
+/* Ubah ukuran teks dalam input */
+#pengabdian-table input {
+  font-size: 12px;
+}
+/* ================= PENGAJARAN - WARNA TEKS ================= */
+
+/* DARK MODE (default sekarang) → putih */
+#pengajaran-table th,
+#pengajaran-table td,
+#pengajaran-table input {
+  color: #ffffff;
+}
+
+/* LIGHT MODE → hitam */
+body.light-mode #pengajaran-table th,
+body.light-mode #pengajaran-table td,
+body.light-mode #pengajaran-table input,
+body.light-mode #pendidikan-table th,
+body.light-mode #pendidikan-table td,
+body.light-mode #pendidikan-table input,
+body.light-mode #penelitian-table th,
+body.light-mode #penelitian-table td,
+body.light-mode #penelitian-table input,
+body.light-mode #pengabdian-table th,
+body.light-mode #pengabdian-table td,
+body.light-mode #pengabdian-table input {
+  color: #000000;
+}

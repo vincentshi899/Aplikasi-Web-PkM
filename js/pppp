@@ -1,0 +1,414 @@
+document.addEventListener('DOMContentLoaded', function() {
+
+    // 1. MAPPING KONFIGURASI INPUT -> PREVIEW
+    const mappings = {
+        // --- Data Artikel ---
+        'in-judul-artikel': ['out-judul-artikel', 'preview-surat-judul', 'preview-surat-judul2'],
+        'in-penulis1': ['out-penulis1'],
+        'in-penulis2': ['out-penulis2'],
+        'in-inst1': ['out-inst1'],
+        'in-email': ['out-email'],
+        'in-abstrak': ['out-abstrak'],
+        'in-keywords': ['out-keywords'],
+        'in-abstract-en': ['out-abstract-en'],
+        'in-keywords-en': ['out-keywords-en'],
+        'in-pendahuluan': ['out-pendahuluan'],
+        'in-metode': ['out-metode'],
+        'in-hasil': ['out-hasil'],
+        'in-kesimpulan': ['out-kesimpulan'],
+        'in-terimakasih': ['out-terimakasih'],
+        'in-kontribusi': ['out-kontribusi'],
+
+        // --- Biodata Lampiran 1 (Ketua) ---
+        'input-bio-nama': ['preview-bio-nama'],
+        'input-bio-jk': ['preview-bio-jk'],
+        'input-bio-prodi': ['preview-bio-prodi'],
+        'input-bio-nim': ['preview-bio-nim'],
+        'input-bio-ttl': ['preview-bio-ttl'],
+        'input-bio-email': ['preview-bio-email'],
+        'input-bio-telp': ['preview-bio-telp'],
+        'input-ttd-nama': ['preview-ttd-nama'],
+        'input-ttd-nim': ['preview-ttd-nim'], 
+        'input-ttd-kota-tgl': ['preview-ttd-kota-tgl', 'preview-ttd-tgl-ang1', 'preview-ttd-tgl-ang2', 'preview-ttd-tgl-surat3'],
+
+        // --- Biodata Lampiran 1 (Anggota 1) ---
+        'input-ang1-nama': ['preview-ang1-nama', 'preview-ttd-nama-ang1', 'preview-l2-nama-ang1'],
+        'input-ang1-jk': ['preview-ang1-jk'],
+        'input-ang1-prodi': ['preview-ang1-prodi'],
+        'input-ang1-nim': ['preview-ang1-nim', 'preview-ttd-nim-ang1'],
+        'input-ang1-ttl': ['preview-ang1-ttl'],
+        'input-ang1-email': ['preview-ang1-email'],
+        'input-ang1-telp': ['preview-ang1-telp'],
+
+        // --- Biodata Lampiran 1 (Anggota 2) ---
+        'input-ang2-nama': ['preview-ang2-nama', 'preview-ttd-nama-ang2', 'preview-l2-nama-ang2'],
+        'input-ang2-jk': ['preview-ang2-jk'],
+        'input-ang2-prodi': ['preview-ang2-prodi'],
+        'input-ang2-nim': ['preview-ang2-nim', 'preview-ttd-nim-ang2'],
+        'input-ang2-ttl': ['preview-ang2-ttl'],
+        'input-ang2-email': ['preview-ang2-email'],
+        'input-ang2-telp': ['preview-ang2-telp'],
+
+        // --- Biodata Lampiran 1 (Dosen) ---
+        'input-dosen-nama': ['preview-dosen-nama', 'preview-ttd-nama-dosen-bwh', 'preview-l2-nama-dosen'],
+        'input-dosen-nip': ['preview-dosen-nip', 'preview-ttd-nip-dosen-bwh'],
+
+        // --- Data Institusi ---
+        'in-prodi': ['out-prodi', 'preview-surat-prodi'],
+        'in-kampus': ['out-kampus'],
+
+        // --- Identitas Ketua Tim Utama ---
+        'in-nama': ['out-nama', 'out-nama-ttd', 'preview-surat-nama', 'preview-ttd-nama-surat3', 'preview-l2-nama-ketua'],
+        'in-nim': ['out-nim', 'out-nim-ttd', 'preview-surat-nim', 'preview-ttd-nim-surat3'],
+
+        // --- Detail PKM-AI ---
+        'in-dosen': ['out-dosen', 'preview-surat-dosen'],
+        'in-sumber': ['out-sumber'],
+        'in-topik': ['out-topik'],
+        'in-pelaksanaan': ['out-pelaksanaan'],
+        
+        // --- Tanggal Surat Akhir ---
+        'in-kota': ['out-kota']
+    };
+
+    // 2. FUNGSI UPDATE PREVIEW OTOMATIS
+    Object.entries(mappings).forEach(([inputId, targetIds]) => {
+        const inputEl = document.getElementById(inputId);
+        if (inputEl) {
+            const updatePreview = function() {
+                const val = inputEl.value;
+                targetIds.forEach(targetId => {
+                    const targetEl = document.getElementById(targetId);
+                    if (targetEl) {
+                        targetEl.innerText = val || "..........";
+                    }
+                });
+            };
+
+            inputEl.addEventListener('input', updatePreview);
+            inputEl.addEventListener('change', updatePreview);
+            updatePreview();
+        }
+    });
+
+    // 3. LOGIKA TANGGAL
+    const inTanggal = document.getElementById("in-tanggal");
+    const outTanggal = document.getElementById("out-tanggal");
+    if (inTanggal) {
+        inTanggal.valueAsDate = new Date(); 
+        inTanggal.addEventListener("change", function () {
+            const dateVal = new Date(this.value);
+            const options = { year: "numeric", month: "long", day: "numeric" };
+            if (outTanggal) outTanggal.innerText = dateVal.toLocaleDateString("id-ID", options);
+        });
+        inTanggal.dispatchEvent(new Event('change'));
+    }
+
+    // 4. LOGIKA PENGATURAN MARGIN KERTAS
+    const inMargin = document.getElementById("in-margin");
+    const paperPreview = document.querySelector(".paper-preview");
+    
+    if (inMargin && paperPreview) {
+        function updateMargin() {
+            const val = inMargin.value;
+            if (val === "4333") {
+                paperPreview.style.padding = "30mm 30mm 30mm 40mm";
+            } else if (val === "4433") {
+                paperPreview.style.padding = "40mm 30mm 30mm 40mm";
+            }
+        }
+        inMargin.addEventListener("change", updateMargin);
+        updateMargin();
+    }
+
+    // 5. LOGIKA GENERATOR DAFTAR PUSTAKA
+    const citationSchema = {
+        buku: [
+            { id: 'c-authors', ph: 'Penulis (Nama Belakang, Inisial)' },
+            { id: 'c-year', ph: 'Tahun (2024)' },
+            { id: 'c-title', ph: 'Judul Buku' },
+            { id: 'c-publisher', ph: 'Penerbit' },
+            { id: 'c-city', ph: 'Kota Terbit' }
+        ],
+        jurnal: [
+            { id: 'c-authors', ph: 'Penulis' },
+            { id: 'c-year', ph: 'Tahun' },
+            { id: 'c-title', ph: 'Judul Artikel' },
+            { id: 'c-journal', ph: 'Nama Jurnal' },
+            { id: 'c-vol', ph: 'Volume(No): Halaman' }
+        ],
+        website: [
+            { id: 'c-authors', ph: 'Penulis/Pemilik' },
+            { id: 'c-year', ph: 'Tahun' },
+            { id: 'c-title', ph: 'Judul Halaman' },
+            { id: 'c-url', ph: 'URL Lengkap' },
+            { id: 'c-access', ph: 'Tgl Akses (12 Jan 2025)' }
+        ],
+        prosiding: [
+            { id: 'c-authors', ph: 'Penulis' },
+            { id: 'c-year', ph: 'Tahun' },
+            { id: 'c-title', ph: 'Judul Artikel' },
+            { id: 'c-conf', ph: 'Nama Konferensi' },
+            { id: 'c-city', ph: 'Kota/Negara' }
+        ],
+        skripsi: [
+            { id: 'c-authors', ph: 'Penulis' },
+            { id: 'c-year', ph: 'Tahun' },
+            { id: 'c-title', ph: 'Judul Skripsi/Tesis' },
+            { id: 'c-univ', ph: 'Nama Universitas' },
+            { id: 'c-type', ph: 'Jenis (Skripsi/Tesis)' }
+        ]
+    };
+
+    let citationsData = [];
+
+    const selectType = document.getElementById('cite-type');
+    const inputContainer = document.getElementById('cite-input-container');
+    const btnAdd = document.getElementById('btn-add-cite');
+    const editorList = document.getElementById('editor-cite-list');
+    const outPustaka = document.getElementById('out-pustaka');
+
+    if (selectType && inputContainer) {
+        
+        function renderInputs() {
+            const type = selectType.value;
+            const fields = citationSchema[type];
+            inputContainer.innerHTML = ''; 
+
+            fields.forEach(field => {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.id = field.id;
+                input.placeholder = field.ph;
+                inputContainer.appendChild(input);
+            });
+        }
+
+        function formatCitation(data, type) {
+            let res = '';
+            const getVal = (id) => (data[id] || '').trim();
+
+            if (type === 'buku') {
+                res = `${getVal('c-authors')} (${getVal('c-year')}). <i>${getVal('c-title')}</i>. ${getVal('c-publisher')}. ${getVal('c-city')}.`;
+            } 
+            else if (type === 'jurnal') {
+                res = `${getVal('c-authors')} (${getVal('c-year')}). ${getVal('c-title')}. <i>${getVal('c-journal')}</i>. ${getVal('c-vol')}.`;
+            }
+            else if (type === 'website') {
+                 res = `${getVal('c-authors')} (${getVal('c-year')}). <i>${getVal('c-title')}</i>. URL: ${getVal('c-url')}. Diakses: ${getVal('c-access')}.`;
+            }
+            else if (type === 'prosiding') {
+                 res = `${getVal('c-authors')} (${getVal('c-year')}). ${getVal('c-title')}. <i>${getVal('c-conf')}</i>. ${getVal('c-city')}.`;
+            }
+            else if (type === 'skripsi') {
+                 res = `${getVal('c-authors')} (${getVal('c-year')}). ${getVal('c-title')}. <i>${getVal('c-type')}</i>. ${getVal('c-univ')}.`;
+            }
+            return res;
+        }
+
+        function renderAll() {
+            // Render Editor List
+            editorList.innerHTML = '';
+            citationsData.sort((a, b) => a.text.replace(/<[^>]*>?/gm, '').localeCompare(b.text.replace(/<[^>]*>?/gm, '')));
+
+            citationsData.forEach((item, index) => {
+                const li = document.createElement('li');
+                const cleanText = item.text.replace(/<[^>]*>?/gm, ''); 
+                
+                li.innerHTML = `
+                    <span title="${cleanText}">${cleanText}</span>
+                    <button class="btn-del-cite" onclick="removeCitation(${index})">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                editorList.appendChild(li);
+            });
+
+            // Render Preview
+            outPustaka.innerHTML = '';
+            if (citationsData.length === 0) {
+                outPustaka.innerHTML = '<p class="pustaka-item">............</p>';
+            } else {
+                citationsData.forEach(item => {
+                    const p = document.createElement('p');
+                    p.className = 'pustaka-item';
+                    p.innerHTML = item.text;
+                    outPustaka.appendChild(p);
+                });
+            }
+        }
+
+        btnAdd.addEventListener('click', function() {
+            const type = selectType.value;
+            const fields = citationSchema[type];
+            let dataObj = {};
+            let isComplete = true;
+
+            fields.forEach(field => {
+                const val = document.getElementById(field.id).value;
+                if(!val) isComplete = false;
+                dataObj[field.id] = val;
+            });
+
+            if (!isComplete) {
+                alert("Mohon lengkapi semua kolom data pustaka.");
+                return;
+            }
+
+            const formatted = formatCitation(dataObj, type);
+            citationsData.push({ text: formatted });
+            
+            fields.forEach(field => document.getElementById(field.id).value = '');
+            renderAll();
+        });
+
+        // Jadikan global agar bisa diakses onclick dari HTML
+        window.removeCitation = function(index) {
+            citationsData.splice(index, 1);
+            renderAll();
+        };
+
+        selectType.addEventListener('change', renderInputs);
+        renderInputs();
+    }
+
+    // 6. LOGIKA DARK/LIGHT MODE TOGGLE
+    // ===============================
+// 6. DARK / LIGHT MODE + LOGO SWITCH
+// ===============================
+
+const themeToggleBtn = document.getElementById("theme-toggle");
+const logo = document.getElementById("navbar-logo");
+
+function updateLogo() {
+  if (!logo) return; // cegah error jika logo tidak ditemukan
+
+  if (document.body.classList.contains("light-mode")) {
+    logo.src = "assets/logo-normalmode.png";
+  } else {
+    logo.src = "assets/logo-darkmode.png";
+  }
+}
+
+if (themeToggleBtn) {
+  const themeIcon = themeToggleBtn.querySelector("i");
+
+  // cek tema dari localStorage
+  const currentTheme = localStorage.getItem("theme");
+
+  if (currentTheme === "light") {
+    document.body.classList.add("light-mode");
+    updateLogo();
+
+    if (themeIcon) {
+      themeIcon.classList.remove("fa-sun");
+      themeIcon.classList.add("fa-moon");
+    }
+  } else {
+    if (themeIcon) {
+      themeIcon.classList.remove("fa-moon");
+      themeIcon.classList.add("fa-sun");
+    }
+  }
+
+  // set logo saat pertama load
+  updateLogo();
+
+  // event toggle theme
+  themeToggleBtn.addEventListener("click", function () {
+    document.body.classList.toggle("light-mode");
+
+    let theme = "dark";
+
+    if (document.body.classList.contains("light-mode")) {
+      theme = "light";
+
+      if (themeIcon) {
+        themeIcon.classList.remove("fa-sun");
+        themeIcon.classList.add("fa-moon");
+      }
+    } else {
+      if (themeIcon) {
+        themeIcon.classList.remove("fa-moon");
+        themeIcon.classList.add("fa-sun");
+      }
+    }
+
+    localStorage.setItem("theme", theme);
+
+    // update logo setelah toggle
+    updateLogo();
+  });
+}
+function updateLogo() {
+  if (!logo) return;
+
+  if (document.body.classList.contains("light-mode")) {
+    logo.src = "assets/logo-normalmode.png";
+  } else {
+    logo.src = "assets/logo-darkmode.png";
+  }
+}
+
+
+// =========================================================
+// 7. FUNGSI DOWNLOAD WORD (DITARUH DI LUAR DOMCONTENTLOADED)
+// =========================================================
+function exportToWord() {
+  // 1. Ambil konten HTML dari preview
+  var content = document.querySelector('.paper-preview').innerHTML;
+  
+  // TRICK PENTING: Hapus spasi/enter kosong di antara tag HTML 
+  // agar Word tidak menganggapnya sebagai baris baru (enter)
+  content = content.replace(/>\s+</g, "><");
+
+  // 2. Buat Header dengan CSS yang LEBIH LENGKAP
+  // Kita tambahkan CSS reset agar tampilan di Word rapi
+  var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' " +
+               "xmlns:w='urn:schemas-microsoft-com:office:word' " +
+               "xmlns='http://www.w3.org/TR/REC-html40'>" +
+               "<head><meta charset='utf-8'><title>Export PKM</title>" +
+               "<style>" +
+               
+               // A. SETUP KERTAS & FONT
+               "@page { size: A4; margin: 2.54cm; mso-page-orientation: portrait; } " +
+               "body { font-family: 'Times New Roman', serif; font-size: 12pt; line-height: 1.15; } " +
+               
+               // B. SOLUSI ERROR GAMBAR 3 & 4 (Halaman Renggang)
+               // Kita paksa tinggi container menjadi 'auto' agar menyesuaikan isi teks, bukan tinggi kertas web
+               ".paper-preview, .doc-page, .pernyataan-section { height: auto !important; min-height: 0 !important; overflow: visible !important; display: block !important; } " +
+               
+               // C. STYLE TABEL (Agar bergaris hitam)
+               "table { border-collapse: collapse; width: 100%; margin-bottom: 10px; } " +
+               "td, th { border: 1px solid black; padding: 4px; vertical-align: top; } " +
+               ".table-header td { font-weight: bold; text-align: center; background-color: #f0f0f0; } " +
+               
+               // D. SOLUSI TANDA TANGAN (Agar tidak ada kotak border & posisinya pas)
+               // Hilangkan border khusus di area tanda tangan
+               ".ttd-section table, .ttd-section td, .signature-box table, .signature-box td { border: none !important; } " +
+               
+               // Posisikan TTD di kanan (Float Right)
+               ".ttd-box, .signature-box { float: right; width: 250px; text-align: left; margin-top: 20px; page-break-inside: avoid; } " +
+               ".ttd-nama { text-decoration: underline; font-weight: bold; margin-top: 70px; } " +
+               
+               // E. Rapatkan Paragraf
+               "p { margin-top: 0; margin-bottom: 6pt; text-align: justify; } " +
+               "h2, h3, h4 { text-align: center; text-transform: uppercase; margin-top: 10pt; margin-bottom: 5pt; } " +
+               
+               "</style></head><body>";
+               
+  var footer = "</body></html>";
+  
+  // 3. Gabungkan Header + Content + Footer
+  var sourceHTML = header + content + footer;
+  
+  // 4. Proses Download
+  var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+  var fileDownload = document.createElement("a");
+  document.body.appendChild(fileDownload);
+  fileDownload.href = source;
+  fileDownload.download = 'Draft_Proposal_PKM_AI.doc';
+  fileDownload.click();
+  document.body.removeChild(fileDownload);
+}
+});

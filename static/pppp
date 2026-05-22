@@ -1,0 +1,836 @@
+/* =========================================
+   1. GLOBAL RESET & FONT
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top right, #2d3e5b, #1a253a);
+  color: #ffffff;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================
+   2. NAVBAR
+   ========================================= */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  background: #1e293b;
+  height: 70px;
+  border-bottom: 2px solid #e57632;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.logo {
+  height: 100px;
+}
+.brand-title {
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.nav-link {
+  text-decoration: none;
+  color: #cbd5e1;
+  font-weight: 500;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s ease;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: #e57632;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.user-info {
+  text-align: right;
+  line-height: 1.2;
+}
+#userFullname {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 13px;
+}
+.role-badge {
+  background: #e57632;
+  color: white;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  display: inline-block;
+}
+.logout-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.logout-btn:hover {
+  background: #ff4757;
+}
+/* =========================================
+   9. TOMBOL TEMA (DARK/LIGHT MODE)
+   ========================================= */
+.theme-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+.theme-btn:hover {
+  background: #e57632;
+}
+
+/* =========================================
+   10. LIGHT MODE OVERRIDES (TEMA TERANG)
+   ========================================= */
+
+/* Body dan Background Utama */
+body.light-mode {
+  background: #f4f7f6; /* Warna background abu-abu terang */
+  color: #1e293b;
+}
+/* Navbar Terang */
+body.light-mode .navbar {
+  background: #ffffff;
+  border-bottom: 2px solid #2563eb;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+body.light-mode .brand-title,
+body.light-mode .nav-link,
+body.light-mode #userFullname {
+  color: #1e293b !important;
+}
+body.light-mode .nav-link:hover {
+  color: #2563eb !important;
+}
+body.light-mode .theme-btn,
+body.light-mode .logout-btn {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+body.light-mode .theme-btn:hover {
+  background: #e2e8f0;
+}
+body.light-mode .logout-btn:hover {
+  background: #ff4757;
+  color: white;
+}
+
+/* Panel Kiri (Editor) Terang */
+body.light-mode .left-panel {
+  background: #ffffff;
+  border-right: 1px solid #cbd5e1;
+}
+body.light-mode .left-panel::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+body.light-mode .left-panel::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+}
+
+/* Panel Kanan (Latar Belakang Kertas) */
+body.light-mode .right-panel {
+  background: #e2e8f0;
+}
+
+/* Form Card Terang */
+body.light-mode .form-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+body.light-mode .panel-header h3 {
+  color: #e57632;
+}
+body.light-mode .panel-header p {
+  color: #64748b;
+}
+body.light-mode .section-title {
+  color: #475569;
+  border-bottom: 1px solid #cbd5e1;
+}
+body.light-mode .form-group label {
+  color: #334155;
+}
+
+/* Input, Textarea, Select Terang */
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+}
+body.light-mode input:focus,
+body.light-mode textarea:focus,
+body.light-mode select:focus {
+  border-color: #e57632;
+  background: #ffffff;
+  box-shadow: 0 0 0 2px rgba(229, 118, 50, 0.2);
+}
+body.light-mode fieldset {
+  border-color: #cbd5e1;
+}
+body.light-mode legend {
+  background: transparent;
+}
+body.light-mode .input-readonly {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+/* Fitur Daftar Pustaka Terang */
+body.light-mode .citation-wrapper {
+  background: #f1f5f9;
+  border: 1px dashed #cbd5e1;
+}
+body.light-mode .cite-select,
+body.light-mode .cite-inputs input {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+body.light-mode .citation-list-editor li {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-left: 3px solid #e57632;
+  color: #334155;
+}
+/* Memaksa semua teks heading dan paragraf jadi warna gelap saat Light Mode */
+body.light-mode h1,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode p,
+body.light-mode span,
+body.light-mode .brand-title,
+body.light-mode .nav-link {
+  color: #1e293b !important;
+}
+
+/* Memperbaiki nama user yang memakai inline style "color: white" di HTML */
+body.light-mode #userFullname {
+  color: #1e293b !important;
+}
+
+/* Memperbaiki tulisan di dalam kotak (Card) Dashboard agar tidak hilang */
+body.light-mode .pkm-card h3,
+body.light-mode .pkm-card p,
+body.light-mode .pkm-icon {
+  color: #1e293b !important;
+}
+
+/* Memperbaiki tombol di mode terang agar kontrasnya pas */
+body.light-mode .pkm-btn {
+  background-color: #e57632;
+  color: white !important; /* Tulisan tombol tetap putih karena backgroundnya oren */
+}
+body.light-mode .pkm-card:hover {
+  border-color: #2563eb;
+}
+body.light-mode .pkm-btn {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+body.light-mode .role-badge {
+  background: #85a5e9;
+  color: white;
+}
+
+/* Light mode - judul panel kiri jadi biru */
+body.light-mode .left-panel .panel-header h3 {
+  color: #2563eb !important;
+}
+
+/* Light mode - judul section seperti Lampiran jadi biru */
+body.light-mode .left-panel .section-title {
+  color: #2563eb !important;
+}
+
+/* Light mode - legend (judul fieldset) jadi biru */
+body.light-mode .left-panel legend {
+  color: #2563eb !important;
+}
+
+body.light-mode .citation-wrapper label {
+  color: #2563eb !important;
+}
+
+/* =========================================
+   3. LAYOUT UTAMA (FITUR RESIZE AKTIF)
+   ========================================= */
+.split-container {
+  /* Gunakan FLEX agar panel bisa ditarik */
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 70px);
+  overflow: hidden;
+  width: 100%;
+}
+
+/* --- PANEL KIRI (EDITOR) --- */
+.left-panel {
+  /* Lebar awal */
+  width: 420px;
+
+  /* FITUR UTAMA: Agar bisa ditarik */
+  resize: horizontal;
+  overflow: auto; /* Wajib ada agar resize jalan */
+
+  background: rgba(30, 41, 59, 0.6);
+  padding: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* Batasan Lebar */
+  min-width: 320px; /* Tidak bisa terlalu kecil */
+  max-width: 60vw; /* Tidak bisa lebih dari 60% layar */
+
+  flex-shrink: 0; /* Agar tidak mengecil otomatis */
+}
+
+/* Custom Scrollbar Panel Kiri */
+.left-panel::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.left-panel::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+.left-panel::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+.left-panel::-webkit-scrollbar-thumb:hover {
+  background: #e57632;
+}
+
+/* Ikon Resize di pojok kanan bawah (Visual Cue) */
+.left-panel::-webkit-resizer {
+  background-color: #1e293b;
+  border-top: 2px solid #e57632;
+  border-left: 2px solid #e57632;
+}
+
+/* --- PANEL KANAN (PREVIEW WRAPPER) --- */
+.right-panel {
+  flex-grow: 1; /* Mengambil sisa ruang */
+  background: #334155;
+  padding: 40px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-width: 0; /* Mencegah overflow horizontal */
+}
+
+/* =========================================
+   4. STYLING FORM EDITOR (INPUT)
+   ========================================= */
+.form-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.panel-header h3 {
+  color: #e57632;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+.panel-header p {
+  color: #94a3b8;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  margin: 25px 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  color: #cbd5e1;
+  font-size: 12px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: white;
+  font-size: 13px;
+  transition: 0.2s;
+}
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #e57632;
+  outline: none;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+fieldset {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+legend {
+  font-size: 12px;
+  color: #e57632;
+  padding: 0 5px;
+  font-weight: 600;
+}
+
+.input-readonly {
+  color: #94a3b8;
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.btn-download {
+  background: #e57632;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.btn-download:hover {
+  background: #d35400;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   5. GENERATOR DAFTAR PUSTAKA
+   ========================================= */
+.citation-wrapper {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  margin-top: 20px;
+}
+.citation-tool-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cite-select {
+  background: #0f172a;
+  border-color: #334155;
+  color: #e57632;
+  font-weight: 600;
+}
+.cite-inputs {
+  display: grid;
+  gap: 8px;
+}
+.cite-inputs input {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.btn-cite-add {
+  background: #27ae60;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition: 0.2s;
+}
+.btn-cite-add:hover {
+  background: #219150;
+}
+.citation-list-editor ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+.citation-list-editor li {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 3px solid #e57632;
+  color: #cbd5e1;
+}
+.btn-del-cite {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-size: 14px;
+}
+.btn-del-cite:hover {
+  color: #ff4757;
+}
+
+/* =========================================
+   6. KERTAS PREVIEW (A4 STYLE)
+   ========================================= */
+.paper-preview {
+  background: white;
+  width: 210mm;
+  min-height: 297mm;
+  padding: 30mm 30mm 30mm 40mm;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+  flex-shrink: 0;
+  transform-origin: top center;
+  transition: transform 0.2s ease;
+}
+
+.paper-preview * {
+  font-family: "Times New Roman", Times, serif !important;
+  color: black;
+}
+#out-judul-artikel {
+  font-size: 14pt;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 12pt;
+  line-height: 1.15;
+}
+.paper-preview p {
+  font-size: 12pt;
+  line-height: 1.5;
+  margin-bottom: 6pt;
+  text-align: justify;
+}
+.paper-preview h3 {
+  font-size: 12pt;
+  font-weight: bold;
+  margin-top: 18pt;
+  margin-bottom: 6pt;
+  text-transform: uppercase;
+}
+.pustaka-item {
+  font-size: 12pt;
+  text-align: justify;
+  text-indent: -1cm;
+  padding-left: 1cm;
+  margin-bottom: 6pt;
+  line-height: 1.5;
+}
+.biodata-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+  font-size: 12pt;
+}
+.biodata-table td {
+  border: 1px solid black;
+  padding: 4px 6px;
+  vertical-align: top;
+  text-align: left;
+}
+.table-header td {
+  font-weight: bold;
+  text-align: center;
+  background: #eee;
+}
+.no-col {
+  width: 30px;
+  text-align: center;
+}
+.doc-page {
+  page-break-before: always;
+  margin-top: 40px;
+  border-top: 2px dashed #ccc;
+  padding-top: 40px;
+}
+
+/* Surat Styles */
+.surat-header {
+  font-size: 12pt;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+.surat-line,
+.title-line {
+  border-bottom: 3px solid black;
+  width: 100%;
+  margin: 2px 0 20px 0;
+}
+.surat-meta {
+  margin: 15px 0;
+}
+.surat-row {
+  display: flex;
+}
+.surat-col1 {
+  width: 200px;
+  flex-shrink: 0;
+}
+.poin-list {
+  margin-left: 20px;
+  padding-left: 15px;
+}
+.sub-point-container {
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.sub-point {
+  display: flex;
+  margin-bottom: 4px;
+}
+.sub-label {
+  width: 230px;
+}
+.sub-colon {
+  width: 15px;
+  text-align: center;
+}
+.sub-value {
+  font-weight: bold;
+}
+
+/* ================= TANDA TANGAN (PASTI DI KANAN) ================= */
+
+/* 1. Wadah Pembungkus */
+.ttd-section,
+.signature-section {
+  text-align: center;
+  display: block; /* Pastikan bentuknya blok baris */
+  width: 100%; /* Lebar penuh */
+  margin-top: 50px; /* Jarak dari teks atas */
+  overflow: hidden; /* Wajib ada agar float tidak berantakan */
+  clear: both; /* Bersihkan elemen kiri/kanan sebelumnya */
+}
+.tt-warning {
+  font-size: 10pt; /* Ukuran huruf lebih kecil sedikit dari nama */
+  color: black;
+  font-style: normal; /* Huruf tegak (bisa ganti italic jika mau) */
+}
+/* 2. Kotak Tanda Tangan */
+.ttd-box,
+.signature-box {
+  float: right; /* PERINTAH UTAMA: GESER KE KANAN MENTOK */
+  width: 250px; /* Lebar kotak kita persempit biar makin ke kanan */
+  text-align: center; /* Teks di dalam kotak tetap rata tengah */
+  margin-right: 0; /* Tempel ke margin kanan kertas */
+
+  /* Font Setting */
+  font-family: "Times New Roman", Times, serif;
+  font-size: 12pt;
+  line-height: 1.5;
+}
+
+/* 3. Style Nama & Jarak TTD */
+.ttd-nama,
+.tt-name {
+  text-align: center;
+  display: block;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-top: 80px; /* Jarak untuk tanda tangan basah */
+  margin-bottom: 2px;
+}
+
+/* =========================================
+   7. MEDIA QUERIES (RESPONSIF)
+   ========================================= */
+
+/* Tablet (Layar < 1024px) */
+@media screen and (max-width: 1024px) {
+  .left-panel {
+    min-width: 35%;
+  }
+  .paper-preview {
+    transform: scale(0.8);
+    margin-top: -60px;
+    margin-bottom: -100px;
+  }
+}
+
+/* Mobile (Layar < 768px) */
+@media screen and (max-width: 768px) {
+  body {
+    height: auto;
+    overflow: auto;
+  }
+  .navbar {
+    padding: 0 15px;
+    height: 60px;
+  }
+  .nav-menu,
+  .user-info {
+    display: none;
+  }
+
+  .split-container {
+    display: block; /* Ubah layout jadi atas-bawah */
+    height: auto;
+  }
+
+  .left-panel {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 60vh;
+    border-right: none;
+    border-bottom: 2px solid #e57632;
+    resize: vertical; /* Tarik ke bawah, bukan ke samping */
+  }
+
+  .right-panel {
+    width: 100%;
+    height: auto;
+    padding: 20px 10px;
+    background: #1e293b;
+    display: block;
+    overflow-x: auto;
+  }
+
+  .paper-preview {
+    transform: scale(0.6);
+    transform-origin: top left;
+    margin: 0 auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* =========================================
+   8. PRINT STYLE
+   ========================================= */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  .navbar,
+  .left-panel,
+  .btn-download,
+  .form-card {
+    display: none !important;
+  }
+  body,
+  html {
+    background: white !important;
+    height: auto !important;
+    overflow: visible !important;
+    color: black !important;
+  }
+  .split-container,
+  .right-panel {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+  .paper-preview {
+    width: 100% !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 30mm 30mm 30mm 40mm !important;
+    transform: none !important;
+  }
+  .doc-page {
+    border: none !important;
+    margin-top: 0 !important;
+    page-break-before: always;
+  }
+  .ttd-box,
+  .signature-box {
+    float: right !important;
+    width: 300px !important;
+  }
+  tr,
+  td,
+  h2,
+  h3,
+  h4 {
+    page-break-inside: avoid;
+  }
+}
+/* MEMAKSA TEXT LAMPIRAN DAN SECTION JADI BIRU DI LIGHT MODE */

@@ -1,0 +1,2056 @@
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surat Pernyataan PKM-PM</title>
+
+    <link rel="stylesheet" href="static/template-pkm-pm.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* Styling Kotak Meterai (Sama dengan PKM-GFT) */
+      .meterai-box {
+        border: 1px solid #000; /* Garis Kotak Hitam */
+        width: 180px;
+        padding: 10px;
+        margin: 15px auto; /* Tengah Horizontal */
+        text-align: center;
+        font-size: 11px;
+        display: block;
+      }
+
+      /* Styling Area Tanda Tangan */
+      .signature-section {
+        margin-top: 40px;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 0;
+      }
+
+      .signature-box {
+        text-align: center;
+        width: 300px; /* Lebar area tanda tangan */
+      }
+
+    </style>
+  </head>
+  <body>
+  <header class="navbar">
+  <div class="nav-left">
+    <a href="dashboard.html" class="brand">
+      <img src="assets/logo-normalmode.png" alt="Logo" class="logo" id="navbar-logo">
+      <span class="brand-title">Otomatisasi PKM</span>
+    </a>
+  </div>
+
+  <div class="nav-right">
+    <div class="user-info">
+      <div id="userFullname" style="color: white; font-weight: 600; font-size: 14px;">
+        Vincent
+      </div>
+      <span class="role-badge">Mahasiswa</span>
+    </div>
+
+    <button id="theme-toggle" class="theme-btn" title="Ganti Tema">
+  <i class="fas fa-sun"></i>
+</button>
+
+    <button class="logout-btn">
+      <i class="fas fa-sign-out-alt"></i>
+    </button>
+  </div>
+</header>
+
+    <div class="split-container">
+      <div class="left-panel">
+        <div class="form-card">
+          <div class="panel-header">
+            <h3><i class="fas fa-users-cog"></i> Edit PKM-PM</h3>
+            <p>Lengkapi data di bawah untuk review surat.</p>
+          </div>
+
+          <form class="editor-form">
+            <div class="section-title" style="margin-top: 0">
+              Pengaturan Kertas
+            </div>
+            <div class="form-group">
+              <label>Pilih Margin (Kiri - Atas - Kanan - Bawah)</label>
+              <select id="in-margin">
+                <option value="4333">4 - 3 - 3 - 3 cm (Standar PKM)</option>
+                <option value="4433">4 - 4 - 3 - 3 cm (Alternatif)</option>
+              </select>
+            </div>
+
+            <div class="section-title">BAB 1. PENDAHULUAN</div>
+
+            <div class="form-group">
+              <label>1.1 Latar Belakang</label>
+              <textarea id="in-latar" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>1.2 Tujuan</label>
+              <textarea id="in-tujuan" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>1.3 Manfaat</label>
+              <textarea id="in-manfaat" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>1.4 Luaran</label>
+              <textarea id="in-luaran" rows="3"></textarea>
+            </div>
+
+            <div class="section-title">
+              BAB 2. GAMBARAN UMUM MASYARAKAT MITRA
+            </div>
+
+            <div class="form-group">
+              <label>2.1 Profil Masyarakat Mitra</label>
+              <textarea id="in-profil" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>2.2 Ketepatan Solusi Bagi Mitra</label>
+              <textarea id="in-solusi" rows="4"></textarea>
+            </div>
+
+            <div class="section-title">BAB 3. METODE PELAKSANAAN</div>
+
+            <div class="form-group">
+              <label>3.1 Perencanaan</label>
+              <textarea id="in-perencanaan" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>3.2 Pelaksanaan</label>
+              <textarea id="in-pelaksanaan" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>3.3 Keberlanjutan Program</label>
+              <textarea id="in-keberlanjutan" rows="4"></textarea>
+            </div>
+
+            <div class="section-title">BAB 4. BIAYA DAN JADWAL KEGIATAN</div>
+
+            <!-- 1. Bahan Habis Pakai -->
+            <div class="form-group">
+              <label>1. Bahan Habis Pakai - Belmawa</label>
+              <input type="text" id="in-b1" />
+            </div>
+
+            <div class="form-group">
+              <label>1. Bahan Habis Pakai - Perguruan Tinggi</label>
+              <input type="text" id="in-b2" />
+            </div>
+
+            <div class="form-group">
+              <label>1. Bahan Habis Pakai - Instansi Lain</label>
+              <input type="text" id="in-b3" />
+            </div>
+
+            <!-- 2. Sewa dan Jasa -->
+            <div class="form-group">
+              <label>2. Sewa dan Jasa - Belmawa</label>
+              <input type="text" id="in-s1" />
+            </div>
+
+            <div class="form-group">
+              <label>2. Sewa dan Jasa - Perguruan Tinggi</label>
+              <input type="text" id="in-s2" />
+            </div>
+
+            <div class="form-group">
+              <label>2. Sewa dan Jasa - Instansi Lain</label>
+              <input type="text" id="in-s3" />
+            </div>
+
+            <!-- 3. Transportasi -->
+            <div class="form-group">
+              <label>3. Transportasi - Belmawa</label>
+              <input type="text" id="in-t1" />
+            </div>
+
+            <div class="form-group">
+              <label>3. Transportasi - Perguruan Tinggi</label>
+              <input type="text" id="in-t2" />
+            </div>
+
+            <div class="form-group">
+              <label>3. Transportasi - Instansi Lain</label>
+              <input type="text" id="in-t3" />
+            </div>
+
+            <!-- 4. Lain-lain -->
+            <div class="form-group">
+              <label>4. Lain-lain - Belmawa</label>
+              <input type="text" id="in-l1" />
+            </div>
+
+            <div class="form-group">
+              <label>4. Lain-lain - Perguruan Tinggi</label>
+              <input type="text" id="in-l2" />
+            </div>
+
+            <div class="form-group">
+              <label>4. Lain-lain - Instansi Lain</label>
+              <input type="text" id="in-l3" />
+            </div>
+
+            <!-- Total -->
+            <div class="form-group">
+              <label>Total Keseluruhan</label>
+              <input type="text" id="in-total-all" />
+            </div>
+
+            <!-- Rekap -->
+            <div class="form-group">
+              <label>Rekap Belmawa</label>
+              <input type="text" id="in-rekap-belmawa" />
+            </div>
+
+            <div class="form-group">
+              <label>Rekap Perguruan Tinggi</label>
+              <input type="text" id="in-rekap-pt" />
+            </div>
+
+            <div class="form-group">
+              <label>Rekap Instansi Lain</label>
+              <input type="text" id="in-rekap-instansi" />
+            </div>
+
+            <div class="form-group">
+              <label>Rekap Total</label>
+              <input type="text" id="in-rekap-total" />
+            </div>
+
+            <!-- Notes -->
+            <div class="form-group">
+              <label>Notes</label>
+              <textarea id="in-notes" rows="5"></textarea>
+            </div>
+
+            <div class="section-title">Jadwal Kegiatan</div>
+
+            <div class="form-group">
+              <label>Nama Kegiatan 1</label><input type="text" id="in-keg1" />
+            </div>
+            <div class="form-group">
+              <label>Nama Kegiatan 2</label><input type="text" id="in-keg2" />
+            </div>
+            <div class="form-group">
+              <label>Nama Kegiatan 16</label><input type="text" id="in-keg16" />
+            </div>
+            <div class="form-group">
+              <label>Nama Kegiatan 17</label><input type="text" id="in-keg17" />
+            </div>
+            <div class="form-group">
+              <label>Nama Kegiatan 18</label><input type="text" id="in-keg18" />
+            </div>
+            <div class="form-group">
+              <label>Nama Kegiatan 19</label><input type="text" id="in-keg19" />
+            </div>
+            <div class="form-group">
+              <label>Nama Kegiatan 20</label><input type="text" id="in-keg20" />
+            </div>
+            <div class="form-group">
+              <label>Nama Kegiatan 21</label><input type="text" id="in-keg21" />
+            </div>
+
+            <!-- Notes -->
+            <div class="form-group">
+              <label>Note 4.2</label>
+              <textarea id="in-note-42" rows="6"></textarea>
+            </div>
+
+            <div class="form-group citation-wrapper">
+              <label
+                style="
+                  color: #e57632;
+                  margin-bottom: 10px;
+                  display: block;
+                  font-weight: bold;
+                "
+              >
+                <i class="fas fa-book"></i> Generator Daftar Pustaka
+              </label>
+
+              <div class="citation-tool-box">
+                <select id="cite-type" class="cite-select">
+                  <option value="buku">Buku</option>
+                  <option value="jurnal">Jurnal</option>
+                  <option value="website">Website</option>
+                  <option value="prosiding">Prosiding</option>
+                  <option value="skripsi">Skripsi/Tesis</option>
+                </select>
+
+                <div id="cite-input-container" class="cite-inputs"></div>
+
+                <button type="button" id="btn-add-cite" class="btn-cite-add">
+                  <i class="fas fa-plus"></i> Tambah ke Daftar
+                </button>
+              </div>
+
+              <div class="citation-list-editor">
+                <label style="margin-top: 10px; font-size: 11px; color: #aaa"
+                  >List Pustaka (Hapus dengan klik X):</label
+                >
+                <ul id="editor-cite-list"></ul>
+              </div>
+            </div>
+
+            <fieldset>
+              <legend>Biodata Dosen Pendamping</legend>
+              <div class="form-group">
+                <label>Nama Dosen (Gelar):</label>
+                <input type="text" id="input-dosen-nama" value="Karli Eka Setiawan, S.Si., M.Kom." />
+              </div>
+              <div class="form-group">
+                <label>Program Studi</label>
+                <input type="text" id="input-dosen-programstudi" />
+              </div>
+              <div class="form-group">
+                <label>NIP/NUPTK Dosen:</label>
+                <input type="text" id="input-dosen-nip" value="5455771672130303" />
+              </div>
+              <div class="form-group">
+                <label>Tempat dan Tanggal Lahir:</label>
+                <input type="text" id="input-dosen-ttl" />
+              </div>
+              <div class="form-group">
+                <label>Alamat E-mail:</label>
+                <input type="email" id="input-dosen-email" />
+              </div>
+              <div class="form-group">
+                <label>Nomor Telepon/HP:</label>
+                <input type="text" id="input-dosen-telp" />
+              </div>
+            </fieldset>
+
+            <div class="section-title">Riwayat Pendidikan</div>
+
+            <table id="pendidikan-table" class="form-table">
+              <tr>
+                <th>Jenjang</th>
+                <th>Bidang Ilmu</th>
+                <th>Institusi</th>
+                <th>Tahun</th>
+              </tr>
+
+              <tr>
+                <td><input type="text" class="jenjang"></td>
+                <td><input type="text" class="bidang"></td>
+                <td><input type="text" class="instansi"></td>
+                <td><input type="text" class="tahun"></td>
+              </tr>
+
+              <tr>
+                <td><input type="text" class="jenjang"></td>
+                <td><input type="text" class="bidang"></td>
+                <td><input type="text" class="instansi"></td>
+                <td><input type="text" class="tahun"></td>
+              </tr>
+
+            </table>
+
+            <button type="button" onclick="tambahPendidikan()">+ Tambah Riwayat</button>
+            <button type="button" onclick="hapusPendidikan()">- Hapus Riwayat</button>
+
+            <div class="section-title">Pendidikan / Pengajaran</div>
+
+            <table id="pengajaran-table" class="form-table">
+              <tr>
+                <th>Nama Mata Kuliah</th>
+                <th>Wajib/Pilihan</th>
+                <th>SKS</th>
+              </tr>
+
+              <tr>
+                <td><input type="text" class="mk"></td>
+                <td><input type="text" class="jenis"></td>
+                <td><input type="text" class="sks"></td>
+              </tr>
+
+              <tr>
+                <td><input type="text" class="mk"></td>
+                <td><input type="text" class="jenis"></td>
+                <td><input type="text" class="sks"></td>
+              </tr>
+
+            </table>
+
+            <button type="button" onclick="tambahPengajaran()">+ Tambah Mata Kuliah</button>
+            <button type="button" onclick="hapusPengajaran()">- Hapus Mata Kuliah</button>
+
+            <div class="section-title">Penelitian</div>
+
+            <table id="penelitian-table" class="form-table">
+            <tr>
+            <th>Judul Penelitian</th>
+            <th>Penyandang Dana</th>
+            <th>Tahun</th>
+            </tr>
+
+            <tr>
+            <td><input type="text" class="judul-penelitian"></td>
+            <td><input type="text" class="dana-penelitian"></td>
+            <td><input type="text" class="tahun-penelitian"></td>
+            </tr>
+
+            <tr>
+            <td><input type="text" class="judul-penelitian"></td>
+            <td><input type="text" class="dana-penelitian"></td>
+            <td><input type="text" class="tahun-penelitian"></td>
+            </tr>
+
+            </table>
+
+            <button type="button" onclick="tambahPenelitian()">+ Tambah Penelitian</button>
+            <button type="button" onclick="hapusPenelitian()">- Hapus Penelitian</button>
+
+            <div class="section-title">Pengabdian kepada Masyarakat</div>
+
+            <table id="pengabdian-table" class="form-table">
+            <tr>
+            <th>Judul Pengabdian</th>
+            <th>Penyandang Dana</th>
+            <th>Tahun</th>
+            </tr>
+
+            <tr>
+            <td><input type="text" class="judul-pengabdian"></td>
+            <td><input type="text" class="dana-pengabdian"></td>
+            <td><input type="text" class="tahun-pengabdian"></td>
+            </tr>
+
+            </table>
+
+            <button type="button" onclick="tambahPengabdian()">+ Tambah Pengabdian</button>
+            <button type="button" onclick="hapusPengabdian()">- Hapus Pengabdian</button>
+
+
+            <div class="section-title">Data Institusi</div>
+            <div class="form-group">
+              <label>Program Studi <span style="color: red">*</span></label>
+              <input type="text" id="in-prodi" value="Computer Science" />
+            </div>
+            <div class="form-group">
+              <label>Perguruan Tinggi</label>
+              <input
+                type="text"
+                id="in-kampus"
+                value="Universitas Bina Nusantara"
+                class="input-readonly"
+                readonly
+              />
+            </div>
+
+            <div class="section-title">Identitas Ketua Tim</div>
+            <div class="form-group">
+              <label>Nama Ketua Tim <span style="color: red">*</span></label>
+              <input
+                type="text"
+                id="in-nama"
+                placeholder="Masukan Nama Lengkap"
+              />
+            </div>
+            <div class="form-group">
+              <label>NIM <span style="color: red">*</span></label>
+              <input type="text" id="in-nim" placeholder="Masukan NIM" />
+            </div>
+
+            <div class="section-title">Detail Proposal</div>
+            <div class="form-group">
+              <label>Nama Dosen Pendamping</label>
+              <input
+                type="text"
+                id="in-dosen"
+                placeholder="Nama Lengkap & Gelar"
+              />
+            </div>
+            <div class="form-group">
+              <label
+                >Judul Proposal PKM <span style="color: red">*</span></label
+              >
+              <textarea
+                id="in-judul"
+                rows="4"
+                placeholder="Judul kegiatan pengabdian..."
+              ></textarea>
+            </div>
+
+            <div class="section-title">Lampiran 5</div>
+
+            <div class="form-group">
+              <label>Isi Judul</label>
+              <input type="text" id="in-judul-lamp5" />
+            </div>
+
+            <div class="form-group">
+  <label>Upload Gambar (TTD / Logo / dll)</label>
+  <input type="file" id="imageUpload" accept="image/*" />
+</div>
+
+<div class="section-title" style="margin-top: 20px">
+              Tanggal Surat
+            </div>
+            <div class="form-group">
+              <label>Kota & Tanggal</label>
+              <div style="display: flex; gap: 10px">
+                <input
+                  type="text"
+                  id="in-kota"
+                  value="Jakarta"
+                  style="flex: 1"
+                />
+                <input type="date" id="in-tanggal" style="flex: 1.5" />
+              </div>
+            </div>
+            
+            <div class="action-buttons">
+              <button type="button" class="btn-download" onclick="exportToWord()" style="background-color: #2b579a; color: white;">
+                <i class="fas fa-file-word"></i> Word
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="paper-preview">
+          <div class="halaman-baru surat-body">
+            <div style="text-align: center; font-weight: bold">
+              BAB 1. PENDAHULUAN
+            </div>
+
+            <br />
+
+            <p><strong>1.1 Latar Belakang</strong></p>
+            <p id="out-latar"></p>
+
+            <br />
+
+            <p><strong>1.2Tujuan</strong></p>
+            <p id="out-tujuan"></p>
+
+            <br />
+
+            <p><strong>1.3 Manfaat</strong></p>
+            <p id="out-manfaat"></p>
+
+            <br />
+
+            <p><strong>1.4 Luaran</strong></p>
+            <p id="out-luaran"></p>
+          </div>
+
+          <div class="halaman-baru surat-body">
+            <div style="text-align: center; font-weight: bold">
+              BAB 2. GAMBARAN UMUM MASYARAKAT MITRA
+            </div>
+
+            <br />
+
+            <p><strong>2.1 Profil Masyarakat Mitra</strong></p>
+            <p id="out-profil"></p>
+
+            <p><strong>2.2 Ketepatan Solusi Bagi Mitra</strong></p>
+            <p id="out-solusi"></p>
+          </div>
+
+          <div class="halaman-baru surat-body">
+            <div style="text-align: center; font-weight: bold">
+              BAB 3. METODE PELAKSANAAN
+            </div>
+
+            <br />
+
+            <p><strong>3.1 Perencanaan</strong></p>
+            <p id="out-perencanaan"></p>
+
+            <p><strong>3.2 Pelaksanaan</strong></p>
+            <p id="out-pelaksanaan"></p>
+
+            <p><strong>3.3 Keberlanjutan Program</strong></p>
+            <p id="out-keberlanjutan"></p>
+          </div>
+
+          <div class="halaman-baru surat-body">
+            <div style="text-align: center; font-weight: bold">
+              BAB 4. BIAYA DAN JADWAL KEGIATAN
+            </div>
+
+            <br />
+
+            <p><strong>4.1 Anggaran Biaya</strong></p>
+            <p>Tabel 4.1. Rekapitulasi Rencana Anggaran Biaya</p>
+
+            <table class="rab-table">
+              <tr>
+                <th>No</th>
+                <th>Jenis Pengeluaran</th>
+                <th>Sumber Dana</th>
+                <th>Besaran Dana (Rp)</th>
+              </tr>
+
+              <!-- 1 -->
+              <tr>
+                <td rowspan="3" class="rab-center">1</td>
+                <td rowspan="3">
+                  Bahan habis pakai (contoh: ATK, kertas, bahan, dan lain lain),
+                  maksimum 60% dari jumlah dana yang diusulkan
+                </td>
+                <td>Belmawa</td>
+                <td id="out-b1"></td>
+              </tr>
+              <tr>
+                <td>Perguruan Tinggi</td>
+                <td id="out-b2"></td>
+              </tr>
+              <tr>
+                <td>Instansi Lain (Jika ada)</td>
+                <td id="out-b3"></td>
+              </tr>
+
+              <!-- 2 -->
+              <tr>
+                <td rowspan="3" class="rab-center">2</td>
+                <td rowspan="3">
+                  Sewa dan jasa (sewa/jasa alat; jasa pembuatan produk pihak
+                  ketiga, dan lain lain), maksimum 15% dari jumlah dana yang
+                  diusulkan
+                </td>
+                <td>Belmawa</td>
+                <td id="out-s1"></td>
+              </tr>
+              <tr>
+                <td>Perguruan Tinggi</td>
+                <td id="out-s2"></td>
+              </tr>
+              <tr>
+                <td>Instansi Lain (Jika ada)</td>
+                <td id="out-s3"></td>
+              </tr>
+
+              <!-- 3 -->
+              <tr>
+                <td rowspan="3" class="rab-center">3</td>
+                <td rowspan="3">
+                  Transportasi lokal maksimum 30% dari jumlah dana yang
+                  diusulkan
+                </td>
+                <td>Belmawa</td>
+                <td id="out-t1"></td>
+              </tr>
+              <tr>
+                <td>Perguruan Tinggi</td>
+                <td id="out-t2"></td>
+              </tr>
+              <tr>
+                <td>Instansi Lain (Jika ada)</td>
+                <td id="out-t3"></td>
+              </tr>
+
+              <!-- 4 -->
+              <tr>
+                <td rowspan="3" class="rab-center">4</td>
+                <td rowspan="3">
+                  Lain-lain (contoh: biaya komunikasi, biaya bayar akses
+                  publikasi, biaya adsense media sosial, dan lain lain) maksimum
+                  15% dari jumlah dana yang diusulkan
+                </td>
+                <td>Belmawa</td>
+                <td id="out-l1"></td>
+              </tr>
+              <tr>
+                <td>Perguruan Tinggi</td>
+                <td id="out-l2"></td>
+              </tr>
+              <tr>
+                <td>Instansi Lain (Jika ada)</td>
+                <td id="out-l3"></td>
+              </tr>
+
+              <!-- Jumlah Total -->
+              <tr>
+                <td colspan="3"><strong>Jumlah</strong></td>
+                <td id="out-total-all"></td>
+              </tr>
+
+              <!-- Rekap -->
+              <tr>
+                <td rowspan="4"><strong>Rekap Sumber Dana</strong></td>
+                <td colspan="2">Belmawa</td>
+                <td id="out-rekap-belmawa"></td>
+              </tr>
+              <tr>
+                <td colspan="2">Perguruan Tinggi</td>
+                <td id="out-rekap-pt"></td>
+              </tr>
+              <tr>
+                <td colspan="2">Instansi Lain (Jika ada)</td>
+                <td id="out-rekap-instansi"></td>
+              </tr>
+              <tr>
+                <td colspan="2"><strong>Jumlah</strong></td>
+                <td id="out-rekap-total"></td>
+              </tr>
+            </table>
+
+            <br />
+
+            <p><strong>NOTE:</strong></p>
+            <div id="out-notes"></div>
+          </div>
+
+          <br /><br />
+
+          <p><strong>4.2 Jadwal Kegiatan</strong></p>
+          <p>Tabel 4.2 Jadwal Kegiatan</p>
+
+          <table class="rab-table">
+            <tr>
+              <th rowspan="2">No</th>
+              <th rowspan="2">Jenis Kegiatan</th>
+              <th colspan="4">Bulan</th>
+              <th rowspan="2">Penanggung Jawab</th>
+            </tr>
+
+            <tr>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+            </tr>
+
+            <!-- 1-2 Editable -->
+            <tr>
+              <td class="rab-center">1</td>
+              <td id="out-keg1"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td id="out-pj1"></td>
+            </tr>
+
+            <tr>
+              <td class="rab-center">2</td>
+              <td id="out-keg2"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td id="out-pj2"></td>
+            </tr>
+
+            <!-- 3 - 15 Template -->
+            <tr>
+              <td class="rab-center">3</td>
+              <td>Pembuatan Akun Media Sosial</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">4</td>
+              <td>Pengiklanan Media Sosial</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">5</td>
+              <td>Publikasi Media Sosial Konten Hasil Program</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">6</td>
+              <td>Posting Pengenalan Topik/Program PKM</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">7</td>
+              <td>Posting Pengenalan tim pelaksana PKM</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">8</td>
+              <td>Posting Redaksi pelaksanaan PKM</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">9</td>
+              <td>Posting Edukasi terkait topik PKM</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">10</td>
+              <td>Posting Kegiatan selama pelaksanaan PKM</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">11</td>
+              <td>Posting Apresiasi dari PKM</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">12</td>
+              <td>Posting Proses pembuatan produk PKM</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">13</td>
+              <td>Posting Produk hasil PKM</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">14</td>
+              <td>Posting Dampak pelaksanaan PKM</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">15</td>
+              <td>Posting Testimoni hasil PKM</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <!-- 16-21 Editable -->
+            <tr>
+              <td class="rab-center">16</td>
+              <td id="out-keg16"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">17</td>
+              <td id="out-keg17"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">18</td>
+              <td id="out-keg18"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">19</td>
+              <td id="out-keg19"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">20</td>
+              <td id="out-keg20"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">21</td>
+              <td id="out-keg21"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+
+            <!-- 22-23 Template -->
+            <tr>
+              <td class="rab-center">22</td>
+              <td>Pembuatan Laporan Kemajuan</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="rab-center">23</td>
+              <td>Pembuatan Laporan Akhir</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+
+          <br />
+
+          <p><strong>NOTE:</strong></p>
+          <div id="out-note-42"></div>
+
+          <br /><br />
+
+          <h3 style="margin-top: 30px; text-transform: uppercase">
+            Daftar Pustaka
+          </h3>
+          <div id="out-pustaka" style="margin-top: 10px">
+            <p class="pustaka-item">............</p>
+          </div>
+
+          
+          <div class="doc-page">
+            <h3 class="doc-section-title">
+              Lampiran 1. Biodata Ketua dan Anggota, serta Dosen Pendamping
+            </h3>
+            <p>Biodata Ketua</p>
+            <h4 class="doc-subsection-title">A. Identitas Diri</h4>
+
+            <table
+              class="biodata-table"
+              style="width: 100%; border-collapse: collapse"
+            >
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  1
+                </td>
+                <td style="border: 1px solid black">Nama Lengkap</td>
+                <td style="border: 1px solid black" id="preview-bio-nama"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  2
+                </td>
+                <td style="border: 1px solid black">Jenis Kelamin</td>
+                <td style="border: 1px solid black">Laki-laki / Perempuan</td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  3
+                </td>
+                <td style="border: 1px solid black">Program Studi</td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  4
+                </td>
+                <td style="border: 1px solid black">NIM</td>
+                <td style="border: 1px solid black" id="preview-bio-nim"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  5
+                </td>
+                <td style="border: 1px solid black">
+                  Tempat dan Tanggal Lahir
+                </td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  6
+                </td>
+                <td style="border: 1px solid black">Alamat E-mail</td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  7
+                </td>
+                <td style="border: 1px solid black">Nomor Telepon/HP</td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+            </table>
+
+            <h4 class="doc-subsection-title">
+              B. Kegiatan Kemahasiswaan Yang Sedang/Pernah Diikuti
+            </h4>
+            <table
+              class="biodata-table"
+              style="width: 100%; border-collapse: collapse"
+            >
+              <tr class="table-header">
+                <td style="border: 1px solid black">No</td>
+                <td style="border: 1px solid black">Jenis Kegiatan</td>
+                <td style="border: 1px solid black">Status dalam Kegiatan</td>
+                <td style="border: 1px solid black">Waktu dan Tempat</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">1</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">2</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">3</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+            </table>
+
+            <h4 class="doc-subsection-title">
+              C. Penghargaan Yang Pernah Diterima
+            </h4>
+            <table
+              class="biodata-table"
+              style="width: 100%; border-collapse: collapse"
+            >
+              <tr class="table-header">
+                <td style="border: 1px solid black">No.</td>
+                <td style="border: 1px solid black">Jenis Penghargaan</td>
+                <td style="border: 1px solid black">
+                  Pihak Pemberi Penghargaan
+                </td>
+                <td style="border: 1px solid black">Tahun</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">1</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">2</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">3</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+            </table>
+
+            <div class="pernyataan-section" style="margin-top: 15px">
+              <p>
+                Semua data yang saya isikan dan tercantum dalam biodata ini
+                adalah benar dan dapat dipertanggungjawabkan secara hukum.
+                Apabila di kemudian hari ternyata dijumpai ketidaksesuaian
+                dengan kenyataan, saya sanggup menerima sanksi.
+              </p>
+              <br />
+              <p>
+                Demikian biodata ini saya buat dengan sebenarnya untuk memenuhi
+                salah satu persyaratandalam pengajuan PKM-PM.
+              </p>
+            </div>
+
+            <div class="signature-section">
+              <div class="signature-box">
+                <p>
+                  <span id="out-kota">Kota</span>, <span id="out-tanggal">Tanggal-Bulan- 2025</span>
+                </p>
+                <p style="text-align: center;">Ketua Tim</p>
+                <br> <br> <br>
+                <p style="text-align: center;">(Nama Lengkap)</p>
+                <p style="text-align: center;">NIM.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="doc-page">
+            <p>Biodata Anggota 1</p>
+            <h4 class="doc-subsection-title">A. Identitas Diri</h4>
+
+            <table
+              class="biodata-table"
+              style="width: 100%; border-collapse: collapse"
+            >
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  1
+                </td>
+                <td style="border: 1px solid black">Nama Lengkap</td>
+                <td style="border: 1px solid black" id="preview-ang1-nama"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  2
+                </td>
+                <td style="border: 1px solid black">Jenis Kelamin</td>
+                <td style="border: 1px solid black">Laki-laki / Perempuan</td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  3
+                </td>
+                <td style="border: 1px solid black">Program Studi</td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  4
+                </td>
+                <td style="border: 1px solid black">NIM</td>
+                <td style="border: 1px solid black" id="preview-ang1-nim"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  5
+                </td>
+                <td style="border: 1px solid black">
+                  Tempat dan Tanggal Lahir
+                </td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  6
+                </td>
+                <td style="border: 1px solid black">Alamat E-mail</td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  7
+                </td>
+                <td style="border: 1px solid black">Nomor Telepon/HP</td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+            </table>
+
+            <h4 class="doc-subsection-title">
+              B. Kegiatan Kemahasiswaan Yang Sedang/Pernah Diikuti
+            </h4>
+            <table
+              class="biodata-table"
+              style="width: 100%; border-collapse: collapse"
+            >
+              <tr class="table-header">
+                <td style="border: 1px solid black">No</td>
+                <td style="border: 1px solid black">Jenis Kegiatan</td>
+                <td style="border: 1px solid black">Status dalam Kegiatan</td>
+                <td style="border: 1px solid black">Waktu dan Tempat</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">1</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">2</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">3</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+            </table>
+
+            <h4 class="doc-subsection-title">
+              C. Penghargaan Yang Pernah Diterima
+            </h4>
+            <table
+              class="biodata-table"
+              style="width: 100%; border-collapse: collapse"
+            >
+              <tr class="table-header">
+                <td style="border: 1px solid black">No.</td>
+                <td style="border: 1px solid black">Jenis Penghargaan</td>
+                <td style="border: 1px solid black">
+                  Pihak Pemberi Penghargaan
+                </td>
+                <td style="border: 1px solid black">Tahun</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">1</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">2</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">3</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+            </table>
+
+            <div class="pernyataan-section" style="margin-top: 15px">
+              <p>
+                Semua data yang saya isikan dan tercantum dalam biodata ini
+                adalah benar dan dapat dipertanggungjawabkan secara hukum.
+                Apabila di kemudian hari ternyata dijumpai ketidaksesuaian
+                dengan kenyataan, saya sanggup menerima sanksi.
+              </p>
+              <br />
+              <p>
+                Demikian biodata ini saya buat dengan sebenarnya untuk memenuhi
+                salah satu persyaratandalam pengajuan PKM-PM.
+              </p>
+            </div>
+
+            <div class="signature-section">
+              <div class="signature-box">
+                <p>
+                  <span id="out-kota">Kota</span>, <span id="out-tanggal">Tanggal-Bulan- 2025</span>
+                </p>
+                <p style="text-align: center;">Anggota 1</p>
+                <br> <br> <br>
+                <p style="text-align: center;">(Nama Lengkap)</p>
+                <p style="text-align: center;">NIM.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="doc-page">
+            <p>Biodata Anggota 2</p>
+            <h4 class="doc-subsection-title">A. Identitas Diri</h4>
+
+            <table
+              class="biodata-table"
+              style="width: 100%; border-collapse: collapse"
+            >
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  1
+                </td>
+                <td style="border: 1px solid black">Nama Lengkap</td>
+                <td style="border: 1px solid black" id="preview-ang2-nama"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  2
+                </td>
+                <td style="border: 1px solid black">Jenis Kelamin</td>
+                <td style="border: 1px solid black">Laki-laki / Perempuan</td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  3
+                </td>
+                <td style="border: 1px solid black">Program Studi</td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  4
+                </td>
+                <td style="border: 1px solid black">NIM</td>
+                <td style="border: 1px solid black" id="preview-ang2-nim"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  5
+                </td>
+                <td style="border: 1px solid black">
+                  Tempat dan Tanggal Lahir
+                </td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  6
+                </td>
+                <td style="border: 1px solid black">Alamat E-mail</td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td
+                  class="no-col"
+                  style="border: 1px solid black; text-align: center"
+                >
+                  7
+                </td>
+                <td style="border: 1px solid black">Nomor Telepon/HP</td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+            </table>
+
+            <h4 class="doc-subsection-title">
+              B. Kegiatan Kemahasiswaan Yang Sedang/Pernah Diikuti
+            </h4>
+            <table
+              class="biodata-table"
+              style="width: 100%; border-collapse: collapse"
+            >
+              <tr class="table-header">
+                <td style="border: 1px solid black">No</td>
+                <td style="border: 1px solid black">Jenis Kegiatan</td>
+                <td style="border: 1px solid black">Status dalam Kegiatan</td>
+                <td style="border: 1px solid black">Waktu dan Tempat</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">1</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">2</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">3</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+            </table>
+
+            <h4 class="doc-subsection-title">
+              C. Penghargaan Yang Pernah Diterima
+            </h4>
+            <table
+              class="biodata-table"
+              style="width: 100%; border-collapse: collapse"
+            >
+              <tr class="table-header">
+                <td style="border: 1px solid black">No.</td>
+                <td style="border: 1px solid black">Jenis Penghargaan</td>
+                <td style="border: 1px solid black">
+                  Pihak Pemberi Penghargaan
+                </td>
+                <td style="border: 1px solid black">Tahun</td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">1</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">2</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+              <tr>
+                <td style="border: 1px solid black; text-align: center">3</td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black"></td>
+              </tr>
+            </table>
+
+            <div class="pernyataan-section" style="margin-top: 15px">
+              <p>
+                Semua data yang saya isikan dan tercantum dalam biodata ini
+                adalah benar dan dapat dipertanggungjawabkan secara hukum.
+                Apabila di kemudian hari ternyata dijumpai ketidaksesuaian
+                dengan kenyataan, saya sanggup menerima sanksi.
+              </p>
+              <br />
+              <p>
+                Demikian biodata ini saya buat dengan sebenarnya untuk memenuhi
+                salah satu persyaratandalam pengajuan PKM-PM.
+              </p>
+            </div>
+
+            <div class="signature-section">
+              <div class="signature-box">
+                <p>
+                  <span id="out-kota">Kota</span>, <span id="out-tanggal">Tanggal-Bulan- 2025</span>
+                </p>
+                <p style="text-align: center">Anggota 2</p>
+                <br />
+                <br />
+                <br />
+                <p style="text-align: center">(Nama Lengkap)</p>
+                <p style="text-align: center">NIM.</p>
+              </div>
+            </div>
+
+          </div>
+
+<!-- BIODATA DOSEN -->
+          <div class="doc-page">
+            <p>Biodata Dosen Pendamping</p>
+            <h4 class="doc-subsection-title">A. Identitas Diri</h4>
+            <table class="biodata-table">
+              <tr><td class="no-col">1</td><td>Nama Lengkap (dengan gelar)</td><td id="out-dosen-nama">Karli Eka Setiawan, S.Si., M.Kom.</td></tr>
+              <tr><td class="no-col">2</td><td>Jenis Kelamin</td><td>Laki-laki / Perempuan</td></tr>
+              <tr><td class="no-col">3</td><td>Program Studi</td><td id="out-dosen-programstudi">Data Science</td></tr>
+              <tr><td class="no-col">4</td><td>NIP/NUPTK</td><td id="out-dosen-nip">5455771672130303</td></tr>
+              <tr><td class="no-col">5</td><td>Tempat dan Tanggal Lahir</td><td id="out-dosen-ttl"></td></tr>
+              <tr><td class="no-col">6</td><td>Alamat Email</td><td id="out-dosen-email"></td></tr>
+              <tr><td class="no-col">7</td><td>Nomor Telepon / HP</td><td id="out-dosen-telp"></td></tr>
+            </table>
+
+            <h4 class="doc-subsection-title">B. Riwayat Pendidikan</h4>
+            <table class="biodata-table">
+              <tr class="table-header">
+                <td>No</td>
+                <td>Jenjang</td>
+                <td>Bidang Ilmu</td>
+                <td>Institusi</td>
+                <td>Tahun Lulus</td>
+              </tr>
+
+              <tbody id="preview-pendidikan"></tbody>
+
+            </table>
+            
+            <h4 class="doc-subsection-title">C. Rekam Jejak Tri Dharma PT</h4>
+            
+            <p style="font-weight: bold; margin-bottom: 5px;">Pendidikan/Pengajaran</p>
+            <table class="biodata-table">
+              <tr class="table-header">
+                <td>No</td>
+                <td>Nama Mata Kuliah</td>
+                <td>Wajib/Pilihan</td>
+                <td>SKS</td>
+              </tr>
+
+              <tbody id="preview-pengajaran"></tbody>
+
+            </table>
+            
+            <p style="font-weight: bold; margin-bottom: 5px;">Penelitian</p>
+            <table class="biodata-table">
+              <tr class="table-header">
+                <td>No</td>
+                <td>Judul Penelitian</td>
+                <td>Penyandang Dana</td>
+                <td>Tahun</td>
+              </tr>
+              <tbody id="preview-penelitian"></tbody>
+
+            </table>
+            
+            <p style="font-weight: bold; margin-bottom: 5px;">Pengabdian Kepada Masyarakat</p>
+            <table class="biodata-table">
+              <tr class="table-header">
+                <td>No</td>
+                <td>Judul Pengabdian Kepada Masyarakat</td>
+                <td>Penyandang Dana</td>
+                <td>Tahun</td>
+              </tr>
+
+              <tbody id="preview-pengabdian"></tbody>
+              
+            </table>
+
+            <div class="pernyataan-section" style="margin-top: 15px">
+              <p>
+                Semua data yang saya isikan dan tercantum dalam biodata ini
+                adalah benar dan dapat dipertanggungjawabkan secara
+                hukum.Apabila di kemudian hari ternyata dijumpai ketidaksesuaian
+                dengan kenyataan, saya sanggup menerima sanksi.
+              </p>
+              <br />
+              <p>
+                Demikian biodata ini saya buat dengan sebenarnya untuk memenuhi
+                salah satu persyaratandalam pengajuan PKM-PM.
+              </p>
+            </div>
+
+            <div class="signature-section">
+              <div class="signature-box">
+                <p>
+                  <span id="out-kota">Kota</span>, <span id="out-tanggal">Tanggal-Bulan- 2025</span>
+                </p>
+                <p style="text-align: center">Dosen Pendamping</p>
+                <br />
+                <br />
+                <br />
+                <p style="text-align: center">(Nama Lengkap)</p>
+                <p style="text-align: center;">NUPTK:</p>
+              </div>
+            </div>
+
+          <div class="halaman-baru surat-body">
+            <p><strong>Lampiran 2. Justifikasi Anggaran Kegiatan</strong></p>
+
+            <table class="rab-table">
+              <tr>
+                <th>No</th>
+                <th>Jenis Pengeluaran</th>
+                <th>Volume</th>
+                <th>Harga Satuan (Rp)</th>
+                <th>Nilai (Rp)</th>
+              </tr>
+
+              <tr>
+                <td>1</td>
+                <td><strong>Belanja Bahan (maks. 60%)</strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td>Cangkul/sabit/gunting</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Pakaian tari/kanvas dan cat</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>ATK</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Alat uji/alat tulis</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Bahan lainnya sesuai program PKM-PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td colspan="4"><strong>SUBTOTAL</strong></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td><strong>Belanja Sewa (maks. 15%)</strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td>Sewa alat</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Sewa server/hosting/domain/SSL/akses jurnal</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Sewa lainnya sesuai program PKM-PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td colspan="4"><strong>SUBTOTAL</strong></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td><strong>Perjalanan lokal (maks. 30%)</strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td>Kegiatan persiapan bahan</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Kegiatan pelaksanaan</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Kegiatan lainnya sesuai program PKM-PM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td colspan="4"><strong>SUBTOTAL</strong></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td>4</td>
+                <td><strong>Lain-lain (maks. 15%)</strong></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td></td>
+                <td>Adsense akun media sosial</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Percetakan produk/media untuk mitra</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>Lainnya sesuai program PKM</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td colspan="4"><strong>SUBTOTAL</strong></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td colspan="4"><strong>GRAND TOTAL</strong></td>
+                <td></td>
+              </tr>
+
+              <tr>
+                <td colspan="5">
+                  <strong>GRAND TOTAL (Terbilang ......)</strong>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <br />
+
+          <div class="halaman-baru surat-body">
+            <p>
+              <strong
+                >Lampiran 3. Susunan Tim Pengusul dan Pembagian Tugas</strong
+              >
+            </p>
+
+            <table class="rab-table">
+              <tr>
+                <th>No</th>
+                <th>Nama / NIM</th>
+                <th>Program Studi</th>
+                <th>Bidang Ilmu</th>
+                <th>Alokasi Waktu (jam/minggu)</th>
+                <th>Uraian Tugas</th>
+              </tr>
+
+              <tr>
+                <td class="rab-center">1</td>
+                <td id="out-nama1"></td>
+                <td id="out-prodi1"></td>
+                <td id="out-bidang1"></td>
+                <td id="out-waktu1"></td>
+                <td id="out-tugas1"></td>
+              </tr>
+
+              <tr>
+                <td class="rab-center">2</td>
+                <td id="out-nama2"></td>
+                <td id="out-prodi2"></td>
+                <td id="out-bidang2"></td>
+                <td id="out-waktu2"></td>
+                <td id="out-tugas2"></td>
+              </tr>
+
+              <tr>
+                <td class="rab-center">3</td>
+                <td id="out-nama3"></td>
+                <td id="out-prodi3"></td>
+                <td id="out-bidang3"></td>
+                <td id="out-waktu3"></td>
+                <td id="out-tugas3"></td>
+              </tr>
+            </table>
+          </div>
+
+          <br /><br />
+
+             <p>
+              <strong
+                >Lampiran 4. Surat Pernyataan Ketua Tim Pengusul</strong
+              >
+            </p>
+          <div class="surat-title">
+            SURAT PERNYATAAN KETUA TIM PENGUSUL
+            <div style="border-bottom: 3px solid black; margin-top: 2px"></div>
+          </div>
+
+          <div class="surat-body">
+            <p>Yang bertanda tangan di bawah ini :</p>
+
+            <table class="biodata-table">
+              <tr>
+                <td class="label-col">Nama Ketua Tim</td>
+                <td class="colon-col">:</td>
+                <td id="out-nama">[Nama Ketua Tim]</td>
+              </tr>
+              <tr>
+                <td>Nomor Induk Mahasiswa</td>
+                <td>:</td>
+                <td id="out-nim">[NIM]</td>
+              </tr>
+              <tr>
+                <td>Program Studi</td>
+                <td>:</td>
+                <td id="out-prodi">Computer Science</td>
+              </tr>
+              <tr>
+                <td>Nama Dosen Pendamping</td>
+                <td>:</td>
+                <td id="out-dosen">[Nama Dosen]</td>
+              </tr>
+              <tr>
+                <td>Perguruan Tinggi</td>
+                <td>:</td>
+                <td id="out-kampus">Universitas Bina Nusantara</td>
+              </tr>
+              <tr>
+                <td style="vertical-align: top">Judul Proposal PKM</td>
+                <td style="vertical-align: top">:</td>
+                <td id="out-judul" style="font-weight: bold">
+                  [Judul Proposal]
+                </td>
+              </tr>
+            </table>
+
+            <br />
+            <p>
+              Dengan ini menyatakan bahwa proposal <strong>PKM-PM</strong> saya
+              dengan judul yang diusulkan untuk tahun anggaran 2025 adalah:
+            </p>
+
+            <ol class="poin-list" style="margin-top: 10px">
+              <li style="margin-bottom: 8px">
+                Asli karya mahasiswa dan belum pernah dibiayai oleh lembaga atau
+                sumber dana lain.
+              </li>
+              <li style="margin-bottom: 8px">
+                Penggunaan kecerdasan buatan/
+                <em>artificial intelligence</em> (AI) mengikuti syarat dan
+                ketentuan yang berlaku sesuai dengan Panduan GenAI Belmawa (<a
+                  href="https://s.id/PanduanGenAI"
+                  style="color: blue; text-decoration: underline"
+                  >https://s.id/PanduanGenAI</a
+                >)
+              </li>
+              <li style="margin-bottom: 8px">
+                Kami berkomitmen untuk menjalankan kegiatan PKM secara
+                sungguh-sungguh hingga selesai.
+              </li>
+            </ol>
+
+            <p style="margin-top: 15px">
+              Bilamana di kemudian hari ditemukan ketidaksesuaian dengan
+              pernyataan ini, maka saya bersedia dituntut dan diproses sesuai
+              dengan ketentuan yang berlaku dan mengembalikan seluruh biaya yang
+              sudah diterima ke kas negara.
+            </p>
+            <br />
+            <p>
+              Demikian pernyataan ini dibuat dengan sesungguhnya dan sebenar –
+              benarnya.
+            </p>
+            <br />
+
+            <div class="signature-section">
+              <div class="signature-box">
+                <p>
+                  <span id="out-kota">Kota</span>, <span id="out-tanggal">Tanggal-Bulan- 2025</span>
+                </p>
+                <p style="text-align: center;">Yang menyatakan,</p>
+
+                <div class="meterai-box">
+                  Meterai senilai Rp. 10.000<br />
+                  <span >Tanda tangan (asli TT basah*)</span>
+                </div>
+
+                <p
+                  style="
+                    font-weight: bold;
+                    text-decoration: underline;
+                    margin-bottom: 0;
+                    margin-top: 15px;
+                  "
+                >
+                  (<span id="out-nama-ttd">Nama Lengkap</span>)
+                </p>
+                <p id="out-nim-ttd">NIM.</p>
+              </div>
+            </div>
+
+            <div class="halaman-baru surat-body">
+              <p style="text-align: center">
+                <strong
+                  >Lampiran 5. Surat Pernyataan Kesediaan dari Bekerjasama dari
+                  Mitra</strong
+                >
+              </p>
+
+              <br />
+
+              <p style="text-align: center; font-weight: bold">
+                SURAT PERNYATAAN KESEDIAAN KERJA SAMA DARI MITRA
+              </p>
+
+              <br />
+
+              <p>Yang bertanda tangan di bawah ini:</p>
+
+              <table class="rab-table rab-no-border">
+                <tr>
+                  <td style="width: 180px">Nama</td>
+                  <td style="width: 15px">:</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Pimpinan Mitra</td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Bidang Kegiatan</td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Alamat</td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+              </table>
+
+              <br />
+
+              <p>
+                Dengan ini menyatakan Bersedia untuk Bekerjasama dengan
+                Pelaksana Kegiatan PKM Pengabdian kepada Masyarakat (PKM-PM)
+                dengan judul:<strong id="out-judul-lamp5"></strong>
+              </p>
+
+              <table class="rab-table">
+                <tr>
+                  <td style="width: 180px">Nama Ketua Tim</td>
+                  <td style="width: 15px">:</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nomor Induk Mahasiswa</td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Program Studi</td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Nama Dosen Pendamping</td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Perguruan Tinggi</td>
+                  <td>:</td>
+                  <td></td>
+                </tr>
+              </table>
+
+              <br />
+
+              <p>
+                Guna menerapkan dan/atau mengembangkan iptek pada tempat kami.
+              </p>
+
+              <p>
+                Bersama ini pula kami nyatakan dengan sebenarnya bahwa di antara
+                pihak Mitra dan Pelaksana Program tidak terdapat ikatan
+                kekeluargaan dan/atau ikatan usaha dalam wujud apapun juga.
+              </p>
+
+              <p>
+                Demikian Surat Pernyataan ini dibuat dengan penuh kesadaran dan
+                tanggung jawab tanpa ada unsur pemaksaan di dalam pembuatannya
+                untuk dapat digunakan sebagaimana mestinya.
+              </p>
+
+              <br /><br />
+
+              <div style="text-align: right">
+                <span id="out-kota-tanggal"></span>
+                <br />
+                Yang menyatakan,
+                <br /><br /><br />
+                <span id="out-ttd"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+       <div id="preview-image-container" style="margin-top:20px;">
+        <img id="previewImage" src="" alt="Preview Gambar" style="max-width:200px; display:none;" />
+         </div>
+      </div>      
+    </div> 
+
+<script src="js/pm.js"></script>
+  </body>
+</html>
+
+

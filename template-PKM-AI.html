@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surat Pernyataan PKM-AI | Editor</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="static/template-pkm-ai.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="nav-left">
+      <a href="dashboard.html" class="brand">
+        <img src="assets/logo-normalmode.png" alt="Logo" class="logo" id="navbar-logo">
+        <span class="brand-title">Otomatisasi PKM</span>
+      </a>
+      </div>
+
+      <div class="nav-right">
+        <div class="user-info">
+          <div
+            id="userFullname"
+            style="color: white; font-weight: 600; font-size: 14px"
+          >
+            Vincent
+          </div>
+          <span class="role-badge">Mahasiswa</span>
+        </div>
+        <button id="theme-toggle" class="theme-btn" title="Ganti Tema">
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="logout-btn">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="split-container">
+      
+      <aside class="left-panel">
+        <div class="form-card">
+          <div class="panel-header">
+            <h3><i class="fas fa-robot"></i> Edit PKM-AI</h3>
+            <p>Lengkapi data Sumber Tulisan di bawah ini.</p>
+          </div>
+
+          <form class="editor-form">
+            <div class="section-title" style="margin-top: 0">
+              Pengaturan Kertas
+            </div>
+            <div class="form-group">
+              <label>Pilih Margin (Kiri - Atas - Kanan - Bawah)</label>
+              <select id="in-margin">
+                <option value="4333">4 - 3 - 3 - 3 cm (Standar PKM)</option>
+                <option value="4433">4 - 4 - 3 - 3 cm (Alternatif)</option>
+              </select>
+            </div>
+
+            <div class="section-title">Data Artikel Ilmiah</div>
+
+            <div class="form-group">
+              <label>Judul Artikel</label>
+              <input type="text" id="in-judul-artikel" />
+            </div>
+
+            <div class="form-group">
+              <label>Penulis 1</label>
+              <input type="text" id="in-penulis1" />
+            </div>
+
+            <div class="form-group">
+              <label>Penulis 2</label>
+              <input type="text" id="in-penulis2" />
+            </div>
+
+            <div class="form-group">
+              <label>Institusi</label>
+              <input type="text" id="in-inst1" />
+            </div>
+
+            <div class="form-group">
+              <label>Email Korespondensi</label>
+              <input type="text" id="in-email" />
+            </div>
+
+            <div class="form-group">
+              <label>Abstrak</label>
+              <textarea id="in-abstrak" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Kata Kunci (pisahkan dengan koma)</label>
+              <input
+                type="text"
+                id="in-keywords"
+                placeholder="contoh: inovasi, AI, sistem"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Abstract (English)</label>
+              <textarea id="in-abstract-en" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Keyword (English)</label>
+              <input type="text" id="in-keywords-en" />
+            </div>
+
+            <div class="form-group">
+              <label>Pendahuluan</label>
+              <textarea id="in-pendahuluan" rows="8"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Metode</label>
+              <textarea id="in-metode" rows="6"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Hasil dan Pembahasan</label>
+              <textarea id="in-hasil" rows="8"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Kesimpulan</label>
+              <textarea id="in-kesimpulan" rows="5"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Ucapan Terima Kasih</label>
+              <textarea id="in-terimakasih" rows="4"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Kontribusi Penulis</label>
+              <textarea id="in-kontribusi" rows="5"></textarea>
+            </div>
+
+            <div class="form-group citation-wrapper">
+              <label style="color: #e57632; margin-bottom: 10px; display:block; font-weight:bold;">
+                  <i class="fas fa-book"></i> Generator Daftar Pustaka
+              </label>
+              
+              <div class="citation-tool-box">
+                <select id="cite-type" class="cite-select">
+                  <option value="buku">Buku</option>
+                  <option value="jurnal">Jurnal</option>
+                  <option value="website">Website</option>
+                  <option value="prosiding">Prosiding</option>
+                  <option value="skripsi">Skripsi/Tesis</option>
+                </select>
+            
+                <div id="cite-input-container" class="cite-inputs"></div>
+            
+                <button type="button" id="btn-add-cite" class="btn-cite-add">
+                  <i class="fas fa-plus"></i> Tambah ke Daftar
+                </button>
+              </div>
+            
+              <div class="citation-list-editor">
+                <label style="margin-top:10px; font-size:11px; color:#aaa;">List Pustaka (Hapus dengan klik X):</label>
+                <ul id="editor-cite-list"></ul>
+              </div>
+            </div>
+            <fieldset>
+              <legend>Lampiran 1: Biodata Ketua</legend>
+
+              <div class="form-group">
+                <label for="input-bio-nama">1. Nama Lengkap:</label>
+                <input type="text" id="input-bio-nama" />
+              </div>
+
+              <div class="form-group">
+                <label for="input-bio-jk">2. Jenis Kelamin:</label>
+                <select id="input-bio-jk">
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="input-bio-prodi">3. Program Studi:</label>
+                <select id="input-bio-prodi">
+                  <option value="Finance">Finance</option>
+                  <option value="Finance International">Finance International</option>
+                  <option value="Accounting">Accounting</option>
+                  <option value="Accounting Technology">Accounting Technology</option>
+                <option value="Accounting and Information System">Accounting and Information System </option>
+                <option value="Taxation">Taxation</option>
+                </select>
+              </div>
+
+
+              <div class="form-group">
+                <label for="input-bio-nim">4. NIM:</label>
+                <input type="text" id="input-bio-nim" />
+              </div>
+
+              <div class="form-group">
+                <label for="input-bio-ttl">5. Tempat dan Tanggal Lahir:</label>
+                <input type="text" id="input-bio-ttl" />
+              </div>
+
+              <div class="form-group">
+                <label for="input-bio-email">6. Alamat E-mail:</label>
+                <input type="email" id="input-bio-email" />
+              </div>
+
+              <div class="form-group">
+                <label for="input-bio-telp">7. Nomor Telepon/HP:</label>
+                <input type="text" id="input-bio-telp" />
+              </div>
+
+              <div class="form-group" style="margin-top: 20px">
+                <label for="input-ttd-kota-tgl"
+                  >Kota, Tanggal Tanda Tangan:</label
+                >
+                <input
+                  type="text"
+                  id="input-ttd-kota-tgl"
+                  value="Kota, tanggal–bulan -2025"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="input-ttd-nama"
+                  >Nama Lengkap (untuk Tanda Tangan):</label
+                >
+                <input type="text" id="input-ttd-nama" value="(Nama Lengkap)" />
+              </div>
+
+              <div class="form-group">
+                <label for="input-ttd-nim">NIM (untuk Tanda Tangan):</label>
+                <input type="text" id="input-ttd-nim" value="NIM" />
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Biodata Anggota 1</legend>
+              <div class="form-group">
+                <label>Nama Lengkap:</label>
+                <input type="text" id="input-ang1-nama" placeholder="Nama Anggota 1" />
+              </div>
+              <div class="form-group">
+                <label>Jenis Kelamin:</label>
+                <select id="input-ang1-jk">
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Program Studi:</label>
+                <select id="input-ang1-prodi">
+                 <option value="Finance">Finance</option>
+                  <option value="Finance International">Finance International</option>
+                  <option value="Accounting">Accounting</option>
+                  <option value="Accounting Technology">Accounting Technology</option>
+                <option value="Accounting and Information System">Accounting and Information System </option>
+                <option value="Taxation">Taxation</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label>NIM:</label>
+                <input type="text" id="input-ang1-nim" placeholder="NIM Anggota 1" />
+              </div>
+              <div class="form-group">
+                <label>Tempat dan Tanggal Lahir:</label>
+                <input type="text" id="input-ang1-ttl" />
+              </div>
+              <div class="form-group">
+                <label>Alamat E-mail:</label>
+                <input type="email" id="input-ang1-email" />
+              </div>
+              <div class="form-group">
+                <label>Nomor Telepon/HP:</label>
+                <input type="text" id="input-ang1-telp" />
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Biodata Anggota 2</legend>
+              <div class="form-group">
+                <label>Nama Lengkap:</label>
+                <input type="text" id="input-ang2-nama" placeholder="Nama Anggota 2" />
+              </div>
+              <div class="form-group">
+                <label>Jenis Kelamin:</label>
+                <select id="input-ang2-jk">
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Program Studi:</label>
+                <select id="input-ang2-prodi">
+                  <option value="Finance">Finance</option>
+                  <option value="Finance International">Finance International</option>
+                  <option value="Accounting">Accounting</option>
+                  <option value="Accounting Technology">Accounting Technology</option>
+                <option value="Accounting and Information System">Accounting and Information System </option>
+                <option value="Taxation">Taxation</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>NIM:</label>
+                <input type="text" id="input-ang2-nim" placeholder="NIM Anggota 2" />
+              </div>
+              <div class="form-group">
+                <label>Tempat dan Tanggal Lahir:</label>
+                <input type="text" id="input-ang2-ttl" />
+              </div>
+              <div class="form-group">
+                <label>Alamat E-mail:</label>
+                <input type="email" id="input-ang2-email" />
+              </div>
+              <div class="form-group">
+                <label>Nomor Telepon/HP:</label>
+                <input type="text" id="input-ang2-telp" />
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Biodata Dosen Pendamping</legend>
+              <div class="form-group">
+                <label>Nama Dosen (Gelar):</label>
+                <input type="text" id="input-dosen-nama" value="Karli Eka Setiawan, S.Si., M.Kom." />
+              </div>
+              <div class="form-group">
+                <label>NIP/NUPTK Dosen:</label>
+                <input type="text" id="input-dosen-nip" value="5455771672130303" />
+              </div>
+            </fieldset>
+            
+            <div class="section-title">Riwayat Pendidikan</div>
+
+            <table id="pendidikan-table" class="form-table">
+              <tr>
+                <th>Jenjang</th>
+                <th>Bidang Ilmu</th>
+                <th>Institusi</th>
+                <th>Tahun</th>
+              </tr>
+
+              <tr>
+                <td><input type="text" class="jenjang"></td>
+                <td><input type="text" class="bidang"></td>
+                <td><input type="text" class="instansi"></td>
+                <td><input type="text" class="tahun"></td>
+              </tr>
+
+              <tr>
+                <td><input type="text" class="jenjang"></td>
+                <td><input type="text" class="bidang"></td>
+                <td><input type="text" class="instansi"></td>
+                <td><input type="text" class="tahun"></td>
+              </tr>
+
+            </table>
+
+            <button type="button" onclick="tambahPendidikan()">+ Tambah Riwayat</button>
+            <button type="button" onclick="hapusPendidikan()">- Hapus Riwayat</button>
+
+            <div class="section-title">Pendidikan / Pengajaran</div>
+
+            <table id="pengajaran-table" class="form-table">
+              <tr>
+                <th>Nama Mata Kuliah</th>
+                <th>Wajib/Pilihan</th>
+                <th>SKS</th>
+              </tr>
+
+              <tr>
+                <td><input type="text" class="mk"></td>
+                <td><input type="text" class="jenis"></td>
+                <td><input type="text" class="sks"></td>
+              </tr>
+
+              <tr>
+                <td><input type="text" class="mk"></td>
+                <td><input type="text" class="jenis"></td>
+                <td><input type="text" class="sks"></td>
+              </tr>
+
+            </table>
+
+            <button type="button" onclick="tambahPengajaran()">+ Tambah Mata Kuliah</button>
+            <button type="button" onclick="hapusPengajaran()">- Hapus Mata Kuliah</button>
+
+            <div class="section-title">Penelitian</div>
+
+            <table id="penelitian-table" class="form-table">
+            <tr>
+            <th>Judul Penelitian</th>
+            <th>Penyandang Dana</th>
+            <th>Tahun</th>
+            </tr>
+
+            <tr>
+            <td><input type="text" class="judul-penelitian"></td>
+            <td><input type="text" class="dana-penelitian"></td>
+            <td><input type="text" class="tahun-penelitian"></td>
+            </tr>
+
+            <tr>
+            <td><input type="text" class="judul-penelitian"></td>
+            <td><input type="text" class="dana-penelitian"></td>
+            <td><input type="text" class="tahun-penelitian"></td>
+            </tr>
+
+            </table>
+
+            <button type="button" onclick="tambahPenelitian()">+ Tambah Penelitian</button>
+            <button type="button" onclick="hapusPenelitian()">- Hapus Penelitian</button>
+
+            <div class="section-title">Pengabdian kepada Masyarakat</div>
+
+            <table id="pengabdian-table" class="form-table">
+            <tr>
+            <th>Judul Pengabdian</th>
+            <th>Penyandang Dana</th>
+            <th>Tahun</th>
+            </tr>
+
+            <tr>
+            <td><input type="text" class="judul-pengabdian"></td>
+            <td><input type="text" class="dana-pengabdian"></td>
+            <td><input type="text" class="tahun-pengabdian"></td>
+            </tr>
+
+            </table>
+
+            <button type="button" onclick="tambahPengabdian()">+ Tambah Pengabdian</button>
+            <button type="button" onclick="hapusPengabdian()">- Hapus Pengabdian</button>
+
+            <div class="section-title">Data Institusi</div>
+            <div class="form-group">
+              <label>Program Studi <span style="color: red">*</span></label>
+              <input type="text" id="in-prodi" value="Computer Science" />
+            </div>
+            <div class="form-group">
+              <label>Perguruan Tinggi</label>
+              <input
+                type="text"
+                id="in-kampus"
+                value="Binus University"
+                class="input-readonly"
+                readonly
+              />
+            </div>
+
+            <div class="section-title">Identitas Ketua Tim</div>
+            <div class="form-group">
+              <label>Nama Ketua Tim <span style="color: red">*</span></label>
+              <input
+                type="text"
+                id="in-nama"
+                placeholder="Masukan Nama Lengkap"
+              />
+            </div>
+            <div class="form-group">
+              <label>NIM <span style="color: red">*</span></label>
+              <input type="text" id="in-nim" placeholder="Masukan NIM" />
+            </div>
+
+            <div class="section-title">Detail PKM-AI</div>
+            <div class="form-group">
+              <label>Nama Dosen Pendamping</label>
+              <input
+                type="text"
+                id="in-dosen"
+                placeholder="Nama Lengkap & Gelar"
+              />
+            </div>
+            <div class="form-group">
+              <label
+                >a. Sumber Tulisan (Nama Kegiatan)
+                <span style="color: red">*</span></label
+              >
+              <textarea
+                id="in-sumber"
+                rows="2"
+                placeholder="Contoh: KKN / Magang..."
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label>b. Topik Kegiatan <span style="color: red">*</span></label>
+              <input type="text" id="in-topik" placeholder="Topik utama..." />
+            </div>
+            <div class="form-group">
+              <label
+                >c. Tahun dan Tempat Pelaksanaan
+                <span style="color: red">*</span></label
+              >
+              <input
+                type="text"
+                id="in-pelaksanaan"
+                placeholder="Contoh: 2024 di Jakarta"
+              />
+            </div>
+
+            <div class="section-title">Tanggal Surat</div>
+            <div class="form-group">
+              <label>Kota & Tanggal</label>
+              <div style="display: flex; gap: 10px">
+                <input
+                  type="text"
+                  id="in-kota"
+                  value="Jakarta"
+                  style="flex: 1"
+                />
+                <input type="date" id="in-tanggal" style="flex: 1.5" />
+              </div>
+            </div>
+
+            <div class="action-buttons">
+  <button type="button" class="btn-download" onclick="exportToWord()" style="background-color: #2b579a; color: white;">
+    <i class="fas fa-file-word"></i> Word
+  </button>
+</div>
+          </form>
+        </div>
+      </aside>
+
+      <section class="right-panel">
+        <div class="paper-preview">
+          <h2 id="out-judul-artikel" style="text-align: center; text-transform: uppercase">JUDUL ARTIKEL</h2>
+
+          <p style="text-align: center"><span id="out-penulis1">Penulis Satu</span>, <span id="out-penulis2">Penulis Dua</span></p>
+          <p style="text-align: center"><span id="out-inst1">Nama Institusi</span></p>
+          <p style="text-align: center">Penulis korespondensi: <span id="out-email">email@domain.com</span></p>
+
+          <hr style="margin: 20px 0" />
+
+          <h3 style="text-align: center">ABSTRAK</h3>
+          <p id="out-abstrak">Isi abstrak akan ditampilkan di sini...</p>
+          <p style="margin-top: 10px; text-align: justify"><strong>Kata Kunci:</strong> <span id="out-keywords">............</span></p>
+
+          <h3 style="text-align: center; font-style: italic; margin-top: 25px">ABSTRACT</h3>
+          <p id="out-abstract-en" style="text-align: justify; font-style: italic">............</p>
+          <p style="margin-top: 10px; text-align: justify; font-style: italic"><strong>Keyword:</strong> <span id="out-keywords-en">............</span></p>
+
+          <h3 style="text-align: left; margin-top: 30px">PENDAHULUAN</h3>
+          <p id="out-pendahuluan" style="text-align: justify">............</p>
+
+          <h3 style="margin-top: 30px">METODE</h3>
+          <p id="out-metode" style="text-align: justify">............</p>
+
+          <h3 style="margin-top: 30px">HASIL DAN PEMBAHASAN</h3>
+          <p id="out-hasil" style="text-align: justify">............</p>
+
+          <h3 style="margin-top: 30px">KESIMPULAN</h3>
+          <p id="out-kesimpulan" style="text-align: justify">............</p>
+
+          <h3 style="margin-top: 30px">UCAPAN TERIMA KASIH</h3>
+          <p id="out-terimakasih" style="text-align: justify">............</p>
+          <hr style="margin: 20px 0" />
+
+          <h3 style="margin-top: 30px">KONTRIBUSI PENULIS</h3>
+          <p id="out-kontribusi" style="text-align: justify">............</p>
+
+          <h3 style="margin-top: 30px; text-transform: uppercase;">Daftar Pustaka</h3>
+          <div id="out-pustaka" style="margin-top: 10px;">
+            <p class="pustaka-item">............</p>
+          </div>
+
+          <div class="doc-page">
+            <h3 class="doc-section-title">Lampiran 1. Biodata Ketua dan Anggota, serta Dosen Pendamping</h3>
+
+            <h4 class="doc-subsection-title">A. Identitas Diri</h4>
+            <table class="biodata-table">
+              <tr><td class="no-col">1</td><td>Nama Lengkap</td><td id="preview-bio-nama"></td></tr>
+              <tr><td class="no-col">2</td><td>Jenis Kelamin</td><td id="preview-bio-jk"></td></tr>
+              <tr><td class="no-col">3</td><td>Program Studi</td><td id="preview-bio-prodi"></td></tr>
+              <tr><td class="no-col">4</td><td>NIM</td><td id="preview-bio-nim"></td></tr>
+              <tr><td class="no-col">5</td><td>Tempat dan Tanggal Lahir</td><td id="preview-bio-ttl"></td></tr>
+              <tr><td class="no-col">6</td><td>Alamat E-mail</td><td id="preview-bio-email"></td></tr>
+              <tr><td class="no-col">7</td><td>Nomor Telepon/HP</td><td id="preview-bio-telp"></td></tr>
+            </table>
+
+            <h4 class="doc-subsection-title">B. Kegiatan Kemahasiswaan Yang Sedang/Pernah Diikuti</h4>
+            <table class="biodata-table">
+              <tr class="table-header"><td>No</td><td>Jenis Kegiatan</td><td>Status dalam Kegiatan</td><td>Waktu dan Tempat</td></tr>
+              <tr><td>1</td><td></td><td></td><td></td></tr>
+              <tr><td>2</td><td></td><td></td><td></td></tr>
+            </table>
+
+            <h4 class="doc-subsection-title">C. Penghargaan Yang Pernah Diterima</h4>
+            <table class="biodata-table">
+              <tr class="table-header"><td>No.</td><td>Jenis Penghargaan</td><td>Pihak Pemberi Penghargaan</td><td>Tahun</td></tr>
+              <tr><td>1</td><td></td><td></td><td></td></tr>
+              <tr><td>2</td><td></td><td></td><td></td></tr>
+            </table>
+
+            <div class="pernyataan-section">
+              <p>Semua data yang saya isikan dan tercantum dalam biodata ini adalah benar dan dapat dipertanggungjawabkan secara hukum. Apabila di kemudian hari ternyata dijumpai ketidaksesuaian dengan kenyataan, saya sanggup menerima sanksi.</p>
+              <p>Demikian biodata ini saya buat dengan sebenarnya untuk memenuhi salah satu persyaratan dalam pengajuan PKM-AI.</p>
+            </div>
+
+            <div class="signature-section">
+              <div class="signature-box">
+                <p id="preview-ttd-kota-tgl"></p>
+                <p>Ketua</p>
+                <br /><br /><br />
+                <p>Tanda tangan (asli TT basah*)</p>
+                <p class="ttd-nama" id="preview-ttd-nama"></p>
+                <p id="preview-ttd-nim"></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="doc-page">
+            <p>Biodata Anggota 1</p>
+            <h4 class="doc-subsection-title">A. Identitas Diri</h4>
+            <table class="biodata-table">
+              <tr><td class="no-col">1</td><td>Nama Lengkap</td><td id="preview-ang1-nama"></td></tr>
+              <tr><td class="no-col">2</td><td>Jenis Kelamin</td><td id="preview-ang1-jk"></td></tr>
+              <tr><td class="no-col">3</td><td>Program Studi</td><td id="preview-ang1-prodi"></td></tr>
+              <tr><td class="no-col">4</td><td>NIM</td><td id="preview-ang1-nim"></td></tr>
+              <tr><td class="no-col">5</td><td>Tempat dan Tanggal Lahir</td><td id="preview-ang1-ttl"></td></tr>
+              <tr><td class="no-col">6</td><td>Alamat E-mail</td><td id="preview-ang1-email"></td></tr>
+              <tr><td class="no-col">7</td><td>Nomor Telepon/HP</td><td id="preview-ang1-telp"></td></tr>
+            </table>
+
+            <h4 class="doc-subsection-title">B. Kegiatan Kemahasiswaan Yang Sedang/Pernah Diikuti</h4>
+            <table class="biodata-table">
+              <tr class="table-header"><td>No</td><td>Jenis Kegiatan</td><td>Status dalam Kegiatan</td><td>Waktu dan Tempat</td></tr>
+              <tr><td>1</td><td></td><td></td><td></td></tr>
+            </table>
+            
+            <div class="pernyataan-section">
+              <p>Semua data yang saya isikan dan tercantum dalam biodata ini adalah benar dan dapat dipertanggungjawabkan secara hukum.</p>
+            </div>
+
+            <div class="ttd-section">
+              <div class="ttd-box">
+                <p id="preview-ttd-tgl-ang1"></p>
+                <p>Anggota 1</p>
+                <br /><br /><br />
+                <p>Tanda tangan (asli TT basah*)</p>
+                <p class="ttd-nama" id="preview-ttd-nama-ang1"></p>
+                <p id="preview-ttd-nim-ang1"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="doc-page">
+            <p>Biodata Anggota 2</p>
+            <h4 class="doc-subsection-title">A. Identitas Diri</h4>
+            <table class="biodata-table">
+              <tr><td class="no-col">1</td><td>Nama Lengkap</td><td id="preview-ang2-nama"></td></tr>
+              <tr><td class="no-col">2</td><td>Jenis Kelamin</td><td id="preview-ang2-jk"></td></tr>
+              <tr><td class="no-col">3</td><td>Program Studi</td><td id="preview-ang2-prodi"></td></tr>
+              <tr><td class="no-col">4</td><td>NIM</td><td id="preview-ang2-nim"></td></tr>
+              <tr><td class="no-col">5</td><td>Tempat dan Tanggal Lahir</td><td id="preview-ang2-ttl"></td></tr>
+              <tr><td class="no-col">6</td><td>Alamat E-mail</td><td id="preview-ang2-email"></td></tr>
+              <tr><td class="no-col">7</td><td>Nomor Telepon/HP</td><td id="preview-ang2-telp"></td></tr>
+            </table>
+            
+            <div class="pernyataan-section">
+               <p>Semua data yang saya isikan dan tercantum dalam biodata ini adalah benar dan dapat dipertanggungjawabkan secara hukum.</p>
+            </div>
+
+            <div class="ttd-section">
+              <div class="ttd-box">
+                <p id="preview-ttd-tgl-ang2"></p>
+                <p>Anggota 2</p>
+                <br /><br /><br />
+                <p>Tanda tangan (asli TT basah*)</p>
+                <p class="ttd-nama" id="preview-ttd-nama-ang2"></p>
+                <p id="preview-ttd-nim-ang2"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="doc-page">
+            <p>Biodata Dosen Pendamping</p>
+            <h4 class="doc-subsection-title">A. Identitas Diri</h4>
+            <table class="biodata-table">
+              <tr><td class="no-col">1</td><td>Nama Lengkap (dengan gelar)</td><td id="preview-dosen-nama">Karli Eka Setiawan, S.Si., M.Kom.</td></tr>
+              <tr><td class="no-col">2</td><td>Jenis Kelamin</td><td>Laki-laki / Perempuan</td></tr>
+              <tr><td class="no-col">3</td><td>Program Studi</td><td>Data Science</td></tr>
+              <tr><td class="no-col">4</td><td>NIP/NUPTK</td><td id="preview-dosen-nip">5455771672130303</td></tr>
+            </table>
+
+            <h4 class="doc-subsection-title">B. Riwayat Pendidikan</h4>
+            <table class="biodata-table">
+              <tr class="table-header">
+                <td>No</td>
+                <td>Jenjang</td>
+                <td>Bidang Ilmu</td>
+                <td>Institusi</td>
+                <td>Tahun Lulus</td>
+              </tr>
+
+              <tbody id="preview-pendidikan"></tbody>
+
+            </table>
+            
+            <h4 class="doc-subsection-title">C. Rekam Jejak Tri Dharma PT</h4>
+            
+            <p style="font-weight: bold; margin-bottom: 5px;">Pendidikan/Pengajaran</p>
+            <table class="biodata-table">
+              <tr class="table-header">
+                <td>No</td>
+                <td>Nama Mata Kuliah</td>
+                <td>Wajib/Pilihan</td>
+                <td>SKS</td>
+              </tr>
+
+              <tbody id="preview-pengajaran"></tbody>
+
+            </table>
+            
+            <p style="font-weight: bold; margin-bottom: 5px;">Penelitian</p>
+            <table class="biodata-table">
+              <tr class="table-header">
+                <td>No</td>
+                <td>Judul Penelitian</td>
+                <td>Penyandang Dana</td>
+                <td>Tahun</td>
+              </tr>
+              <tbody id="preview-penelitian"></tbody>
+
+            </table>
+            
+            <p style="font-weight: bold; margin-bottom: 5px;">Pengabdian Kepada Masyarakat</p>
+            <table class="biodata-table">
+              <tr class="table-header">
+                <td>No</td>
+                <td>Judul Pengabdian Kepada Masyarakat</td>
+                <td>Penyandang Dana</td>
+                <td>Tahun</td>
+              </tr>
+
+              <tbody id="preview-pengabdian"></tbody>
+              
+            </table>
+
+            <div class="pernyataan-section">
+              <p>Semua data yang saya isikan dan tercantum dalam biodata ini adalah benar dan dapat dipertanggungjawabkan secara hukum. Apabila di kemudian hari ternyata dijumpai ketidaksesuaian dengan kenyataan, saya sanggup menerima sanksi.</p>
+              <p>Demikian biodata ini saya buat dengan sebenarnya untuk memenuhi salah satu persyaratan dalam pengajuan PKM-AI.</p>
+            </div>
+
+            <div class="ttd-section">
+              <div class="ttd-box">
+                <p>Jakarta, 9 Mei 2025</p>
+                <p>Dosen Pendamping</p>
+                <br /><br /><br />
+                <p class="ttd-nama" id="preview-ttd-nama-dosen-bwh">Karli Eka Setiawan</p>
+                <p id="preview-ttd-nip-dosen-bwh">5455771672130303</p>
+              </div>
+            </div>
+
+          <div class="doc-page">
+            <br />
+            <h3 class="doc-section-title">Lampiran 2. Kontribusi Ketua, anggota, dan dosen pendamping</h3>
+            <table class="biodata-table">
+              <tr class="table-header"><td>No</td><td>Nama</td><td>Posisi penulis</td><td>Bidang Ilmu</td><td>Kontribusi</td></tr>
+              <tr>
+                <td class="no-col">1</td><td id="preview-l2-nama-ketua"></td><td>Penulis pertama</td><td id="preview-l2-ilmu"></td><td id="preview-l2-kontribusi"></td>
+              </tr>
+              <tr>
+                <td class="no-col">2</td><td id="preview-l2-nama-ang1"></td><td>Anggota</td><td></td><td></td>
+              </tr>
+              <tr>
+                <td class="no-col">3</td><td id="preview-l2-nama-ang2"></td><td>Anggota</td><td></td><td></td>
+              </tr>
+              <tr>
+                <td class="no-col">4</td><td id="preview-l2-nama-dosen">Karli Eka Setiawan</td><td>Dosen Pendamping</td><td>Data Science</td><td>Pengarah dan desain kegiatan serta penyelaras akhir manuskrip</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="doc-page">
+            <h3 class="doc-section-title">Lampiran 3. Surat Pernyataan Ketua Tim Pengusul</h3>
+            <div class="surat-header">SURAT PERNYATAAN KETUA TIM PENGUSUL</div>
+            <div class="surat-line"></div>
+
+            <div class="surat-body">
+              <p>Yang bertanda tangan di bawah ini :</p>
+              <div class="surat-meta">
+                <div class="surat-row"><div class="surat-col1">Nama Ketua Tim</div><div>: <span id="preview-surat-nama"></span></div></div>
+                <div class="surat-row"><div class="surat-col1">Nomor Induk Mahasiswa</div><div>: <span id="preview-surat-nim"></span></div></div>
+                <div class="surat-row"><div class="surat-col1">Program Studi</div><div>: <span id="preview-surat-prodi"></span></div></div>
+                <div class="surat-row"><div class="surat-col1">Nama Dosen Pendamping</div><div>: <span id="preview-surat-dosen">Karli Eka Setiawan</span></div></div>
+                <div class="surat-row"><div class="surat-col1">Perguruan Tinggi</div><div>: Binus University</div></div>
+                <div class="surat-row"><div class="surat-col1">Judul Proposal PKM</div><div>: <span id="preview-surat-judul"></span></div></div>
+              </div>
+
+              <p>Dengan ini menyatakan bahwa proposal PKM-AI saya dengan judul <span id="preview-surat-judul2"></span> yang diusulkan untuk tahun anggaran 2025 adalah:</p>
+
+              <ol>
+                <li>Asli karya kami, belum pernah dibiayai oleh lembaga atau sumber dana lain</li>
+                <li>Penggunaan kecerdasan buatan/<em>artificial intelligence</em> (AI) mengikuti syarat dan ketentuan yang berlaku sesuai dengan Panduan GenAI Belmawa</li>
+              </ol>
+
+              <p>Bilamana di kemudian hari ditemukan ketidaksesuaian dengan pernyataan ini, maka saya bersedia dituntut dan diproses sesuai dengan ketentuan yang berlaku.</p>
+              <p>Demikian pernyataan ini dibuat dengan sesungguhnya dan sebenar – benarnya.</p>
+            </div>
+
+            <div class="signature-section">
+              <div class="signature-box">
+                <p id="preview-ttd-tgl-surat3"></p>
+                <p>Yang menyatakan,</p>
+                <br />
+                <p class="tt-warning">Meterai senilai Rp. 10.000<br />Tanda tangan (asli TT basah*)</p>
+                <p class="ttd-nama" id="preview-ttd-nama-surat3"></p>
+                <p id="preview-ttd-nim-surat3"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="surat-title" style="page-break-before: always; margin-top: 10px;">
+            SURAT PERNYATAAN SUMBER TULISAN PKM-AI
+            <div class="title-line"></div>
+          </div>
+
+          <div class="surat-body">
+            <p>Saya yang menandatangani Surat Pernyataan ini:</p>
+            <div class="surat-meta">
+              <div class="surat-row"><div class="surat-col1">Nama Ketua Tim</div><div>: <span id="out-nama"></span></div></div>
+              <div class="surat-row"><div class="surat-col1">Nomor Induk Mahasiswa</div><div>: <span id="out-nim"></span></div></div>
+              <div class="surat-row"><div class="surat-col1">Nama Dosen Pendamping</div><div>: <span id="preview-surat-dosen"></span></div></div>
+              <div class="surat-row"><div class="surat-col1">Program Studi</div><div>: <span id="out-prodi"></span></div></div>
+              <div class="surat-row"><div class="surat-col1">Perguruan Tinggi</div><div>: <span id="out-kampus"></span></div></div>
+            </div>
+
+            <ol class="poin-list">
+              <li>
+                Menyatakan bahwa PKM-AI yang saya tuliskan bersama anggota tim lainnya benar bersumber dari kegiatan yang telah dilakukan:
+                <div class="sub-point-container">
+                  <div class="point-a-text">
+                    a. Sumber tulisan dari hasil kegiatan: <span id="out-sumber" style="font-weight: bold; border-bottom: 1px dotted #000">....................</span>
+                  </div>
+                  <div class="sub-point">
+                    <div class="sub-label">b. Topik Kegiatan</div>
+                    <div class="sub-colon">:</div>
+                    <div class="sub-value" id="out-topik" style="font-weight: bold">....................</div>
+                  </div>
+                  <div class="sub-point">
+                    <div class="sub-label">c. Tahun dan Tempat Pelaksanaan</div>
+                    <div class="sub-colon">:</div>
+                    <div class="sub-value" id="out-pelaksanaan" style="font-weight: bold">....................</div>
+                  </div>
+                </div>
+              </li>
+              <li>Naskah ini belum pernah diterbitkan/dipublikasikan dalam bentuk prosiding maupun jurnal sebelumnya dan diikutkan dalam kompetisi.</li>
+              <li>Kami menyatakan kesediaan artikel ilmiah ini ditampilkan pada laman pkm.kemendikbud.go.id.</li>
+            </ol>
+
+            <p style="margin-top: 20px; text-align: justify">Demikian Surat Pernyataan ini dibuat dengan penuh kesadaran tanpa paksaan pihak manapun juga untuk dapat digunakan sebagaimana mestinya.</p>
+
+            <div class="signature-section">
+              <div class="signature-box">
+                <p><span id="out-kota">Jakarta</span>, <span id="out-tanggal">14 Februari 2026</span></p>
+                <p>Yang menyatakan,</p>
+                <br><br><br><br>
+                <p class="tt-warning">Tanda tangan (asli TT basah*)</p>
+                <p class="tt-name">(<span id="out-nama-ttd">Nama Lengkap</span>)</p>
+                <p id="out-nim-ttd"></p> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

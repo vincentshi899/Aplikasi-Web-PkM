@@ -601,6 +601,14 @@ legend {
   padding-left: 1cm;
   margin-bottom: 6pt;
   line-height: 1.5;
+  
+  /* TAMBAHKAN DUA BARIS INI: */
+  overflow-wrap: break-word; /* Memaksa kata panjang pindah baris */
+  word-break: break-word;    /* Kompatibilitas untuk browser tertentu */
+  
+  /* Pastikan box tidak melar */
+  width: 100%;               
+  box-sizing: border-box;    
 }
 .biodata-table {
   width: 100%;

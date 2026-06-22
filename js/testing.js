@@ -22,6 +22,18 @@ document.addEventListener("DOMContentLoaded", function () {
     "in-terimakasih": ["out-terimakasih"],
     "in-kontribusi": ["out-kontribusi"],
 
+    // --- Daftar Isi ---
+    "in-daftar-isi": ["pv-daftar-isi"],
+    "in-page-bab1": ["pv-bab1"],
+    "in-page-bab2": ["pv-bab2"],
+    "in-page-bab3": ["pv-bab3"],
+    "in-page-daftar-pustaka": ["pv-daftar-pustaka"],
+    "in-page-lampiran": ["pv-lampiran"],
+    "in-page-lampiran1": ["pv-lampiran1"],
+    "in-page-lampiran2": ["pv-lampiran2"],
+    "in-page-lampiran3": ["pv-lampiran3"],
+    "in-page-lampiran4": ["pv-lampiran4"],
+
     // --- Biodata Lampiran 1 (Ketua) ---
     "input-bio-nama": ["preview-bio-nama"],
     "input-bio-jk": ["preview-bio-jk"],
@@ -116,17 +128,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputEl = document.getElementById(inputId);
     if (inputEl) {
       const updatePreview = function () {
-        const val = inputEl.value;
-        targetIds.forEach((targetId) => {
-          const targetEl = document.getElementById(targetId);
-          if (targetEl) {
-            // PERUBAHAN DI SINI:
-            // Hapus logika "if (targetId.includes('ttd-nim')..."
-            // Sekarang semua input diperlakukan sama (teks polos)
-            targetEl.innerText = val || "....................";
-          }
-        });
-      };
+  const val = inputEl.value;
+  targetIds.forEach((targetId) => {
+    const targetEl = document.getElementById(targetId);
+    if (targetEl) {
+      // Logika baru: 
+      // Jika input kosong, kembalikan ke teks asli yang ada di HTML (1 atau X)
+      // Jika input ada isinya, gunakan isi tersebut.
+      if (val === "") {
+        // Mengembalikan ke nilai default original (bisa disesuaikan jika perlu)
+        targetEl.innerText = targetEl.getAttribute('data-default') || targetEl.innerText;
+      } else {
+        targetEl.innerText = val;
+      }
+    }
+  });
+};
 
       inputEl.addEventListener("input", updatePreview);
       inputEl.addEventListener("change", updatePreview);

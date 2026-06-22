@@ -2,74 +2,113 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 1. MAPPING KONFIGURASI INPUT -> PREVIEW
     const mappings = {
-        // --- Data Artikel ---
-        'in-judul-artikel': ['out-judul-artikel', 'preview-surat-judul', 'preview-surat-judul2'],
-        'in-penulis1': ['out-penulis1'],
-        'in-penulis2': ['out-penulis2'],
-        'in-inst1': ['out-inst1'],
-        'in-email': ['out-email'],
-        'in-abstrak': ['out-abstrak'],
-        'in-keywords': ['out-keywords'],
-        'in-abstract-en': ['out-abstract-en'],
-        'in-keywords-en': ['out-keywords-en'],
-        'in-pendahuluan': ['out-pendahuluan'],
-        'in-metode': ['out-metode'],
-        'in-hasil': ['out-hasil'],
-        'in-kesimpulan': ['out-kesimpulan'],
-        'in-terimakasih': ['out-terimakasih'],
-        'in-kontribusi': ['out-kontribusi'],
+      // --- Data Artikel ---
+      "in-judul-artikel": [
+        "out-judul-artikel",
+        "preview-surat-judul",
+        "preview-surat-judul2",
+      ],
+      "in-penulis": ["out-penulis"],
+      "in-inst1": ["out-inst1"],
+      "in-email": ["out-email"],
+      "in-abstrak": ["out-abstrak"],
+      "in-keywords": ["out-keywords"],
+      "in-abstract-en": ["out-abstract-en"],
+      "in-keywords-en": ["out-keywords-en"],
+      "in-pendahuluan": ["out-pendahuluan"],
+      "in-metode": ["out-metode"],
+      "in-hasil": ["out-hasil"],
+      "in-kesimpulan": ["out-kesimpulan"],
+      "in-terimakasih": ["out-terimakasih"],
+      "in-kontribusi": ["out-kontribusi"],
 
-        // --- Biodata Lampiran 1 (Ketua) ---
-        'input-bio-nama': ['preview-bio-nama'],
-        'input-bio-jk': ['preview-bio-jk'],
-        'input-bio-prodi': ['preview-bio-prodi'],
-        'input-bio-nim': ['preview-bio-nim'],
-        'input-bio-ttl': ['preview-bio-ttl'],
-        'input-bio-email': ['preview-bio-email'],
-        'input-bio-telp': ['preview-bio-telp'],
-        'input-ttd-nama': ['preview-ttd-nama'],
-        'input-ttd-nim': ['preview-ttd-nim'],
-        'input-ttd-kota-tgl': ['preview-ttd-kota-tgl', 'preview-ttd-tgl-ang1', 'preview-ttd-tgl-ang2', 'preview-ttd-tgl-surat3'],
+      // --- Biodata Lampiran 1 (Ketua) ---
+      "input-bio-nama": ["preview-bio-nama"],
+      "input-bio-jk": ["preview-bio-jk"],
+      "input-bio-prodi": ["preview-bio-prodi"],
+      "input-bio-nim": ["preview-bio-nim"],
+      "input-bio-ttl": ["preview-bio-ttl"],
+      "input-bio-email": ["preview-bio-email"],
+      "input-bio-telp": ["preview-bio-telp"],
+      "input-ttd-nama": ["preview-ttd-nama"],
+      "input-ttd-nim": ["preview-ttd-nim"],
+      "input-ttd-kota-tgl": [
+        "preview-ttd-kota-tgl",
+        "preview-ttd-tgl-ang1",
+        "preview-ttd-tgl-ang2",
+        "preview-ttd-tgl-surat3",
+      ],
 
-        // --- Biodata Lampiran 1 (Anggota 1) ---
-        'input-ang1-nama': ['preview-ang1-nama', 'preview-ttd-nama-ang1', 'preview-l2-nama-ang1'],
-        'input-ang1-jk': ['preview-ang1-jk'],
-        'input-ang1-prodi': ['preview-ang1-prodi'],
-        'input-ang1-nim': ['preview-ang1-nim', 'preview-ttd-nim-ang1'],
-        'input-ang1-ttl': ['preview-ang1-ttl'],
-        'input-ang1-email': ['preview-ang1-email'],
-        'input-ang1-telp': ['preview-ang1-telp'],
+      // --- Biodata Lampiran 1 (Anggota 1) ---
+      "input-ang1-nama": [
+        "preview-ang1-nama",
+        "preview-ttd-nama-ang1",
+        "preview-l2-nama-ang1",
+      ],
+      "input-ang1-jk": ["preview-ang1-jk"],
+      "input-ang1-prodi": ["preview-ang1-prodi"],
+      "input-ang1-nim": ["preview-ang1-nim", "preview-ttd-nim-ang1"],
+      "input-ang1-ttl": ["preview-ang1-ttl"],
+      "input-ang1-email": ["preview-ang1-email"],
+      "input-ang1-telp": ["preview-ang1-telp"],
 
-        // --- Biodata Lampiran 1 (Anggota 2) ---
-        'input-ang2-nama': ['preview-ang2-nama', 'preview-ttd-nama-ang2', 'preview-l2-nama-ang2'],
-        'input-ang2-jk': ['preview-ang2-jk'],
-        'input-ang2-prodi': ['preview-ang2-prodi'],
-        'input-ang2-nim': ['preview-ang2-nim', 'preview-ttd-nim-ang2'],
-        'input-ang2-ttl': ['preview-ang2-ttl'],
-        'input-ang2-email': ['preview-ang2-email'],
-        'input-ang2-telp': ['preview-ang2-telp'],
+      // --- Biodata Lampiran 1 (Anggota 2) ---
+      "input-ang2-nama": [
+        "preview-ang2-nama",
+        "preview-ttd-nama-ang2",
+        "preview-l2-nama-ang2",
+      ],
+      "input-ang2-jk": ["preview-ang2-jk"],
+      "input-ang2-prodi": ["preview-ang2-prodi"],
+      "input-ang2-nim": ["preview-ang2-nim", "preview-ttd-nim-ang2"],
+      "input-ang2-ttl": ["preview-ang2-ttl"],
+      "input-ang2-email": ["preview-ang2-email"],
+      "input-ang2-telp": ["preview-ang2-telp"],
 
-        // --- Biodata Lampiran 1 (Dosen) ---
-        'input-dosen-nama': ['preview-dosen-nama', 'preview-ttd-nama-dosen-bwh', 'preview-l2-nama-dosen'],
-        'input-dosen-nip': ['preview-dosen-nip', 'preview-ttd-nip-dosen-bwh'],
+      // --- Biodata Lampiran 1 (Dosen) ---
+      "input-dosen-nama": [
+        "preview-dosen-nama",
+        "preview-ttd-nama-dosen-bwh",
+        "preview-l2-nama-dosen",
+      ],
+      "input-dosen-nip": ["preview-dosen-nip", "preview-ttd-nip-dosen-bwh"],
+      "input-dosen-jk": ["preview-dosen-jk"],
+      "input-dosen-prodi": ["preview-dosen-prodi"],
 
-        // --- Data Institusi ---
-        'in-prodi': ['out-prodi', 'preview-surat-prodi'],
-        'in-kampus': ['out-kampus'],
+      // --- Data Institusi ---
+      "in-prodi": ["out-prodi", "preview-surat-prodi"],
+      "in-kampus": ["out-kampus"],
 
-        // --- Identitas Ketua Tim Utama ---
-        'in-nama': ['out-nama', 'out-nama-ttd', 'preview-surat-nama', 'preview-ttd-nama-surat3', 'preview-l2-nama-ketua'],
-        'in-nim': ['out-nim', 'out-nim-ttd', 'preview-surat-nim', 'preview-ttd-nim-surat3'],
+      // --- Identitas Ketua Tim Utama ---
+      "in-nama": [
+        "out-nama",
+        "out-nama-ttd",
+        "preview-surat-nama",
+        "preview-ttd-nama-surat3",
+        "preview-l2-nama-ketua",
+      ],
+      "in-nim": [
+        "out-nim",
+        "out-nim-ttd",
+        "preview-surat-nim",
+        "preview-ttd-nim-surat3",
+      ],
 
-        // --- Detail PKM-AI ---
-        'in-dosen': ['out-dosen', 'preview-surat-dosen'],
-        'in-sumber': ['out-sumber'],
-        'in-topik': ['out-topik'],
-        'in-pelaksanaan': ['out-pelaksanaan'],
+      // --- Detail PKM-AI ---
+      "in-dosen": ["out-dosen", "preview-surat-dosen"],
+      "in-sumber": ["out-sumber"],
+      "in-topik": ["out-topik"],
+      "in-pelaksanaan": ["out-pelaksanaan"],
 
-        // --- Tanggal Surat Akhir ---
-        'in-kota': ['out-kota']
+      // --- Tanggal Surat Akhir ---
+      "in-kota": ["out-kota"],
     };
+
+    document
+      .getElementById("logout-btn")
+      .addEventListener("click", function () {
+        window.location.href = "dashboard.html";
+      });
 
     // 2. FUNGSI UPDATE PREVIEW OTOMATIS
     Object.entries(mappings).forEach(([inputId, targetIds]) => {

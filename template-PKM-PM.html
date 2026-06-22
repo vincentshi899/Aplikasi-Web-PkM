@@ -58,9 +58,9 @@
   <i class="fas fa-sun"></i>
 </button>
 
-    <button class="logout-btn">
-      <i class="fas fa-sign-out-alt"></i>
-    </button>
+    <button id="logout-btn" class="logout-btn">
+  <i class="fas fa-sign-out-alt"></i>
+</button>
   </div>
 </header>
 
@@ -311,9 +311,23 @@
                 <label>Nama Dosen (Gelar):</label>
                 <input type="text" id="input-dosen-nama" value="Karli Eka Setiawan, S.Si., M.Kom." />
               </div>
+
               <div class="form-group">
-                <label>Program Studi</label>
-                <input type="text" id="input-dosen-programstudi" />
+                <label>Jenis Kelamin:</label>
+                <select id="input-dosen-jk">
+                  <option value="Laki-laki">Laki-Laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>Program Studi:</label>
+                <select id="input-dosen-programstudi">
+                  <option value="Finance">Finance</option>
+                  <option value="Accounting">Accounting</option>
+                  <option value="Accounting Technology">Accounting Technology</option>
+                <option value="Taxation">Taxation</option>
+                </select>
               </div>
               <div class="form-group">
                 <label>NIP/NUPTK Dosen:</label>
@@ -1504,8 +1518,8 @@
             <h4 class="doc-subsection-title">A. Identitas Diri</h4>
             <table class="biodata-table">
               <tr><td class="no-col">1</td><td>Nama Lengkap (dengan gelar)</td><td id="out-dosen-nama">Karli Eka Setiawan, S.Si., M.Kom.</td></tr>
-              <tr><td class="no-col">2</td><td>Jenis Kelamin</td><td>Laki-laki / Perempuan</td></tr>
-              <tr><td class="no-col">3</td><td>Program Studi</td><td id="out-dosen-programstudi">Data Science</td></tr>
+              <tr><td class="no-col">2</td><td>Jenis Kelamin</td><td id="out-dosen-jk"></td></tr>
+              <tr><td class="no-col">3</td><td>Program Studi</td><td id="out-dosen-programstudi"></td></tr>
               <tr><td class="no-col">4</td><td>NIP/NUPTK</td><td id="out-dosen-nip">5455771672130303</td></tr>
               <tr><td class="no-col">5</td><td>Tempat dan Tanggal Lahir</td><td id="out-dosen-ttl"></td></tr>
               <tr><td class="no-col">6</td><td>Alamat Email</td><td id="out-dosen-email"></td></tr>

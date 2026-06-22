@@ -52,7 +52,7 @@
         { in: "input-dosen-ttl", out: ["out-dosen-ttl"] },
         { in: "input-dosen-email", out: ["out-dosen-email"] },
         { in: "input-dosen-telp", out: ["out-dosen-telp"] },
-
+        { in: "input-dosen-jk", out: ["out-dosen-jk"] },
       ];
 
       fields.forEach((field) => {
@@ -71,6 +71,12 @@
           });
         }
       });
+
+      document
+        .getElementById("logout-btn")
+        .addEventListener("click", function () {
+          window.location.href = "dashboard.html";
+        });
 
       // 2. TANGGAL OTOMATIS
       const inTanggal = document.getElementById("in-tanggal");

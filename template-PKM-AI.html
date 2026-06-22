@@ -37,9 +37,9 @@
         <button id="theme-toggle" class="theme-btn" title="Ganti Tema">
           <i class="fas fa-sun"></i>
         </button>
-        <button class="logout-btn">
-          <i class="fas fa-sign-out-alt"></i>
-        </button>
+       <button id="logout-btn" class="logout-btn">
+  <i class="fas fa-sign-out-alt"></i>
+</button>
       </div>
     </header>
 
@@ -72,13 +72,8 @@
             </div>
 
             <div class="form-group">
-              <label>Penulis 1</label>
-              <input type="text" id="in-penulis1" />
-            </div>
-
-            <div class="form-group">
-              <label>Penulis 2</label>
-              <input type="text" id="in-penulis2" />
+              <label>Penulis</label>
+              <input type="text" id="in-penulis" />
             </div>
 
             <div class="form-group">
@@ -191,10 +186,8 @@
                 <label for="input-bio-prodi">3. Program Studi:</label>
                 <select id="input-bio-prodi">
                   <option value="Finance">Finance</option>
-                  <option value="Finance International">Finance International</option>
                   <option value="Accounting">Accounting</option>
                   <option value="Accounting Technology">Accounting Technology</option>
-                <option value="Accounting and Information System">Accounting and Information System </option>
                 <option value="Taxation">Taxation</option>
                 </select>
               </div>
@@ -243,7 +236,7 @@
                 <input type="text" id="input-ttd-nim" value="NIM" />
               </div>
             </fieldset>
-
+<!-- BIODATA ANGGOTA  -->
             <fieldset>
               <legend>Biodata Anggota 1</legend>
               <div class="form-group">
@@ -261,10 +254,8 @@
                 <label>Program Studi:</label>
                 <select id="input-ang1-prodi">
                  <option value="Finance">Finance</option>
-                  <option value="Finance International">Finance International</option>
                   <option value="Accounting">Accounting</option>
                   <option value="Accounting Technology">Accounting Technology</option>
-                <option value="Accounting and Information System">Accounting and Information System </option>
                 <option value="Taxation">Taxation</option>
                   </select>
               </div>
@@ -303,10 +294,8 @@
                 <label>Program Studi:</label>
                 <select id="input-ang2-prodi">
                   <option value="Finance">Finance</option>
-                  <option value="Finance International">Finance International</option>
                   <option value="Accounting">Accounting</option>
                   <option value="Accounting Technology">Accounting Technology</option>
-                <option value="Accounting and Information System">Accounting and Information System </option>
                 <option value="Taxation">Taxation</option>
                 </select>
               </div>
@@ -333,6 +322,22 @@
               <div class="form-group">
                 <label>Nama Dosen (Gelar):</label>
                 <input type="text" id="input-dosen-nama" value="Karli Eka Setiawan, S.Si., M.Kom." />
+              </div>
+              <div class="form-group">
+                <label>Jenis Kelamin:</label>
+                <select id="input-dosen-jk">
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+               <div class="form-group">
+                <label>Program Studi:</label>
+                <select id="input-dosen-prodi">
+                  <option value="Finance">Finance</option>
+                  <option value="Accounting">Accounting</option>
+                  <option value="Accounting Technology">Accounting Technology</option>
+                <option value="Taxation">Taxation</option>
+                </select>
               </div>
               <div class="form-group">
                 <label>NIP/NUPTK Dosen:</label>
@@ -534,7 +539,7 @@
         <div class="paper-preview">
           <h2 id="out-judul-artikel" style="text-align: center; text-transform: uppercase">JUDUL ARTIKEL</h2>
 
-          <p style="text-align: center"><span id="out-penulis1">Penulis Satu</span>, <span id="out-penulis2">Penulis Dua</span></p>
+          <p style="text-align: center"><span id="out-penulis">..........</span>,
           <p style="text-align: center"><span id="out-inst1">Nama Institusi</span></p>
           <p style="text-align: center">Penulis korespondensi: <span id="out-email">email@domain.com</span></p>
 
@@ -686,9 +691,12 @@
             <h4 class="doc-subsection-title">A. Identitas Diri</h4>
             <table class="biodata-table">
               <tr><td class="no-col">1</td><td>Nama Lengkap (dengan gelar)</td><td id="preview-dosen-nama">Karli Eka Setiawan, S.Si., M.Kom.</td></tr>
-              <tr><td class="no-col">2</td><td>Jenis Kelamin</td><td>Laki-laki / Perempuan</td></tr>
-              <tr><td class="no-col">3</td><td>Program Studi</td><td>Data Science</td></tr>
+              <tr><td class="no-col">2</td><td>Jenis Kelamin</td><td id ="preview-dosen-jk">...</td></tr>
+              <tr><td class="no-col">3</td><td>Program Studi</td><td id="preview-dosen-prodi">...</td></tr>
               <tr><td class="no-col">4</td><td>NIP/NUPTK</td><td id="preview-dosen-nip">5455771672130303</td></tr>
+              <tr><td class="no-col">5</td><td>Tempat dan Tanggal Lahir</td><td id="preview-dosen-ttl"></td></tr>
+              <tr><td class="no-col">6</td><td>Alamat Email</td><td id="preview-dosen-email"></td></tr>
+              <tr><td class="no-col">7</td><td>Nomor Telepon / HP</td><td id="preview-dosen-telp"></td></tr>
             </table>
 
             <h4 class="doc-subsection-title">B. Riwayat Pendidikan</h4>

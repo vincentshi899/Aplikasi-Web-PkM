@@ -75,6 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
     "input-dosen-ttl": ["preview-dosen-ttl"],
     "input-dosen-email": ["preview-dosen-email"],
     "input-dosen-telp": ["preview-dosen-telp"],
+    "input-dosen-jk": ["preview-dosen-jk"],
+    "input-dosen-prodi": ["preview-dosen-prodi"],
 
     // --- Data Institusi ---
     "in-prodi": ["out-prodi", "preview-surat-prodi"],
@@ -104,6 +106,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // --- Tanggal Surat Akhir ---
     "in-kota": ["out-kota"],
   };
+
+  document.getElementById("logout-btn").addEventListener("click", function () {
+    window.location.href = "dashboard.html";
+  });
 
   // 2. FUNGSI UPDATE PREVIEW OTOMATIS (LOGIKA DIPERBAIKI)
   Object.entries(mappings).forEach(([inputId, targetIds]) => {

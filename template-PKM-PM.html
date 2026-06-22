@@ -304,8 +304,126 @@
                 <ul id="editor-cite-list"></ul>
               </div>
             </div>
+            <fieldset class="biodata-input-section">
+  <legend>Biodata Ketua</legend>
+  <div class="form-group">
+    <label>Nama Lengkap:</label>
+    <input type="text" id="input-bio-nama" placeholder="Nama Ketua" />
+  </div>
+  <div class="form-group">
+    <label>Jenis Kelamin:</label>
+    <select id="input-bio-jk">
+      <option value="Laki-laki">Laki-laki</option>
+      <option value="Perempuan">Perempuan</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Program Studi:</label>
+    <select id="input-bio-prodi">
+      <option value="Finance">Finance</option>
+      <option value="Accounting">Accounting</option>
+      <option value="Accounting Technology">Accounting Technology</option>
+      <option value="Taxation">Taxation</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>NIM:</label>
+    <input type="text" id="input-bio-nim" placeholder="NIM Ketua" />
+  </div>
+  <div class="form-group">
+    <label>Tempat dan Tanggal Lahir:</label>
+    <input type="text" id="input-bio-ttl" />
+  </div>
+  <div class="form-group">
+    <label>Alamat E-mail:</label>
+    <input type="email" id="input-bio-email" />
+  </div>
+  <div class="form-group">
+    <label>Nomor Telepon/HP:</label>
+    <input type="text" id="input-bio-telp" />
+  </div>
+</fieldset>
 
-            <fieldset>
+<fieldset class="biodata-input-section">
+  <legend>Biodata Anggota 1</legend>
+  <div class="form-group">
+    <label>Nama Lengkap:</label>
+    <input type="text" id="input-ang1-nama" placeholder="Nama Anggota 1" />
+  </div>
+  <div class="form-group">
+    <label>Jenis Kelamin:</label>
+    <select id="input-ang1-jk">
+      <option value="Laki-laki">Laki-laki</option>
+      <option value="Perempuan">Perempuan</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Program Studi:</label>
+    <select id="input-ang1-prodi">
+      <option value="Finance">Finance</option>
+      <option value="Accounting">Accounting</option>
+      <option value="Accounting Technology">Accounting Technology</option>
+      <option value="Taxation">Taxation</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>NIM:</label>
+    <input type="text" id="input-ang1-nim" placeholder="NIM Anggota 1" />
+  </div>
+  <div class="form-group">
+    <label>Tempat dan Tanggal Lahir:</label>
+    <input type="text" id="input-ang1-ttl" />
+  </div>
+  <div class="form-group">
+    <label>Alamat E-mail:</label>
+    <input type="email" id="input-ang1-email" />
+  </div>
+  <div class="form-group">
+    <label>Nomor Telepon/HP:</label>
+    <input type="text" id="input-ang1-telp" />
+  </div>
+</fieldset>
+
+              <fieldset class="biodata-input-section" >
+              <legend>Biodata Anggota 2</legend>
+              <div class="form-group">
+                <label>Nama Lengkap:</label>
+                <input type="text" id="input-ang2-nama" placeholder="Nama Anggota 2" />
+              </div>
+              <div class="form-group">
+                <label>Jenis Kelamin:</label>
+                <select id="input-ang2-jk">
+                  <option value="Laki-laki">Laki-laki</option>
+                  <option value="Perempuan">Perempuan</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Program Studi:</label>
+                <select id="input-ang2-prodi">
+                  <option value="Finance">Finance</option>
+                  <option value="Accounting">Accounting</option>
+                  <option value="Accounting Technology">Accounting Technology</option>
+                  <option value="Taxation">Taxation</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>NIM:</label>
+                <input type="text" id="input-ang2-nim" placeholder="NIM Anggota 2" />
+              </div>
+              <div class="form-group">
+                <label>Tempat dan Tanggal Lahir:</label>
+                <input type="text" id="input-ang2-ttl" />
+              </div>
+              <div class="form-group">
+                <label>Alamat E-mail:</label>
+                <input type="email" id="input-ang2-email" />
+              </div>
+              <div class="form-group">
+                <label>Nomor Telepon/HP:</label>
+                <input type="text" id="input-ang2-telp" />
+              </div>
+              </fieldset>
+            <fieldset class="biodata-input-section">
               <legend>Biodata Dosen Pendamping</legend>
               <div class="form-group">
                 <label>Nama Dosen (Gelar):</label>
@@ -1004,7 +1122,7 @@
                   2
                 </td>
                 <td style="border: 1px solid black">Jenis Kelamin</td>
-                <td style="border: 1px solid black">Laki-laki / Perempuan</td>
+                <td style="border: 1px solid black" id="preview-bio-jk"></td>
               </tr>
               <tr>
                 <td
@@ -1014,7 +1132,7 @@
                   3
                 </td>
                 <td style="border: 1px solid black">Program Studi</td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black" id="preview-bio-prodi"></td>
               </tr>
               <tr>
                 <td
@@ -1033,10 +1151,8 @@
                 >
                   5
                 </td>
-                <td style="border: 1px solid black">
-                  Tempat dan Tanggal Lahir
-                </td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black">Tempat dan Tanggal Lahir</td>
+                <td style="border: 1px solid black" id="preview-bio-ttl"></td>
               </tr>
               <tr>
                 <td
@@ -1046,7 +1162,7 @@
                   6
                 </td>
                 <td style="border: 1px solid black">Alamat E-mail</td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black" id="preview-bio-email"></td>
               </tr>
               <tr>
                 <td
@@ -1056,7 +1172,7 @@
                   7
                 </td>
                 <td style="border: 1px solid black">Nomor Telepon/HP</td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black" id="preview-bio-telp"></td>
               </tr>
             </table>
 
@@ -1181,7 +1297,7 @@
                   2
                 </td>
                 <td style="border: 1px solid black">Jenis Kelamin</td>
-                <td style="border: 1px solid black">Laki-laki / Perempuan</td>
+                <td style="border: 1px solid black" id="preview-ang1-jk"></td>
               </tr>
               <tr>
                 <td
@@ -1191,7 +1307,7 @@
                   3
                 </td>
                 <td style="border: 1px solid black">Program Studi</td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black" id="preview-ang1-prodi"></td>
               </tr>
               <tr>
                 <td
@@ -1210,10 +1326,8 @@
                 >
                   5
                 </td>
-                <td style="border: 1px solid black">
-                  Tempat dan Tanggal Lahir
-                </td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black">Tempat dan Tanggal Lahir</td>
+                <td style="border: 1px solid black" id="preview-ang1-ttl"></td>
               </tr>
               <tr>
                 <td
@@ -1223,7 +1337,7 @@
                   6
                 </td>
                 <td style="border: 1px solid black">Alamat E-mail</td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black" id="preview-ang1-email"></td>
               </tr>
               <tr>
                 <td
@@ -1233,7 +1347,7 @@
                   7
                 </td>
                 <td style="border: 1px solid black">Nomor Telepon/HP</td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black" id="preview-ang1-telp"></td>
               </tr>
             </table>
 
@@ -1358,7 +1472,7 @@
                   2
                 </td>
                 <td style="border: 1px solid black">Jenis Kelamin</td>
-                <td style="border: 1px solid black">Laki-laki / Perempuan</td>
+                <td style="border: 1px solid black" id="preview-ang2-jk"></td>
               </tr>
               <tr>
                 <td
@@ -1368,7 +1482,7 @@
                   3
                 </td>
                 <td style="border: 1px solid black">Program Studi</td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black" id="preview-ang2-prodi"></td>
               </tr>
               <tr>
                 <td
@@ -1387,10 +1501,8 @@
                 >
                   5
                 </td>
-                <td style="border: 1px solid black">
-                  Tempat dan Tanggal Lahir
-                </td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black">Tempat dan Tanggal Lahir</td>
+                <td style="border: 1px solid black" id="preview-ang2-ttl"></td>
               </tr>
               <tr>
                 <td
@@ -1400,7 +1512,7 @@
                   6
                 </td>
                 <td style="border: 1px solid black">Alamat E-mail</td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black" id="preview-ang2-email"></td>
               </tr>
               <tr>
                 <td
@@ -1410,7 +1522,7 @@
                   7
                 </td>
                 <td style="border: 1px solid black">Nomor Telepon/HP</td>
-                <td style="border: 1px solid black"></td>
+                <td style="border: 1px solid black" id="preview-ang2-telp"></td>
               </tr>
             </table>
 

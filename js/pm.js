@@ -46,6 +46,29 @@
         { in: "in-judul-lamp5", out: ["out-judul-lamp5"] },
         { in: "in-kota-tanggal", out: ["out-kota-tanggal"] },
         { in: "in-ttd", out: ["out-ttd"] },
+        { in: "input-bio-nama", out: ["preview-bio-nama", "preview-ttd-nama"] },
+        { in: "input-bio-jk", out: ["preview-bio-jk"] },
+        { in: "input-bio-prodi", out: ["preview-bio-prodi"] },
+        { in: "input-bio-nim", out: ["preview-bio-nim", "preview-ttd-nim"] },
+        { in: "input-bio-ttl", out: ["preview-bio-ttl"] },
+        { in: "input-bio-email", out: ["preview-bio-email"] },
+        { in: "input-bio-telp", out: ["preview-bio-telp"] },
+
+        { in: "input-ang1-nama", out: ["preview-ang1-nama", "preview-ttd-nama-ang1"] },
+        { in: "input-ang1-jk", out: ["preview-ang1-jk"] },
+        { in: "input-ang1-prodi", out: ["preview-ang1-prodi"] },
+        { in: "input-ang1-nim", out: ["preview-ang1-nim", "preview-ttd-nim-ang1"] },
+        { in: "input-ang1-ttl", out: ["preview-ang1-ttl"] },
+        { in: "input-ang1-email", out: ["preview-ang1-email"] },
+        { in: "input-ang1-telp", out: ["preview-ang1-telp"] },
+
+        { in: "input-ang2-nama", out: ["preview-ang2-nama", "preview-ttd-nama-ang2"] },
+        { in: "input-ang2-jk", out: ["preview-ang2-jk"] },
+        { in: "input-ang2-prodi", out: ["preview-ang2-prodi"] },
+        { in: "input-ang2-nim", out: ["preview-ang2-nim", "preview-ttd-nim-ang2"] },
+        { in: "input-ang2-ttl", out: ["preview-ang2-ttl"] },
+        { in: "input-ang2-email", out: ["preview-ang2-email"] },
+        { in: "input-ang2-telp", out: ["preview-ang2-telp"] },
         { in: "input-dosen-nama", out: ["out-dosen-nama"] },
         { in: "input-dosen-programstudi", out: ["out-dosen-programstudi"] },
         { in: "input-dosen-nip", out: ["out-dosen-nip"] },
@@ -56,21 +79,33 @@
       ];
 
       fields.forEach((field) => {
-        const inputEl = document.getElementById(field.in);
-        if (inputEl) {
-          inputEl.addEventListener("input", function () {
-            const val = this.value || `[${this.placeholder || "Data"}]`;
-            field.out.forEach((outId) => {
-              const outEl = document.getElementById(outId);
-              if (outEl) {
-                if (outId === "out-nim-ttd")
-                  outEl.innerText = "NIM. " + this.value;
-                else outEl.innerText = val;
-              }
-            });
-          });
+  const inputEl = document.getElementById(field.in);
+
+  if (inputEl) {
+    const updateOutput = function () {
+      const val = this.value || `[${this.placeholder || "Data"}]`;
+
+      field.out.forEach((outId) => {
+        const outEl = document.getElementById(outId);
+
+        if (outEl) {
+          if (outId === "out-nim-ttd") {
+            outEl.innerText = "NIM. " + this.value;
+          } else {
+            outEl.innerText = val;
+          }
         }
       });
+    };
+
+    inputEl.addEventListener("input", updateOutput);
+    inputEl.addEventListener("change", updateOutput);
+
+    if (inputEl.value || inputEl.tagName === "SELECT") {
+      updateOutput.call(inputEl);
+    }
+  }
+});
 
       document
         .getElementById("logout-btn")

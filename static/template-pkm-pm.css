@@ -819,3 +819,16 @@ body.light-mode #pengabdian-table td,
 body.light-mode #pengabdian-table input {
   color: #000000;
 }
+
+.biodata-input-section {
+  border: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.biodata-input-section legend {
+  padding: 0;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #ffffff;
+}
